@@ -20,6 +20,8 @@ const PopularMovies: React.FC<IProps> = ({ result }) => {
                 <>
                     <div className="d-flex justify-content-between pt-5">
                         <h2>Popular movies</h2>
+                        <input type="checkbox" id="check" className="toggle" />
+                        <label id="check" htmlFor="check" />
                         <Button
                             variant="dark"
                             href={`popular-movies`}
@@ -45,7 +47,6 @@ const PopularMovies: React.FC<IProps> = ({ result }) => {
                             </Col>
                         ))}
                     </Row>
-
                 </>
             )}
         </>
