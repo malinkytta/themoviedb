@@ -1,8 +1,16 @@
+import TopRatedMoviesPage from "./TopratedMoviesPage"
+import NowPlayingMoviesPage from "./NowPlayingMoviesPage"
+import PopularMoviesPage from "./PopularMoviesPage"
+
 const HomePage = () => {
 
     return (
         <div>
-            <h1>This is the home page</h1>
+
+            <NowPlayingMoviesPage />
+            <TopRatedMoviesPage />
+            <PopularMoviesPage />
+
         </div>
     )
 }
