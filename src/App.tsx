@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container'
 import HomePage from './pages/HomePage'
 import NotFound from './pages/NotFound'
 import Navigation from './components/Navigation'
-import Sidebar from './components/Sidebar'
 
 import './assets/scss/App.scss'
 import MoviesPage from './pages/MoviesPage'
@@ -12,6 +11,7 @@ import SingleMoviePage from './pages/SingleMoviePage'
 import GenreMoviesPage from './pages/GenreMoviesPage'
 import SearchMoviesPage from './pages/SearchMoviesPage'
 import ActorsPage from './pages/ActorsPage'
+import GlobalLoadingSpinner from './components/GlobalLoadingSpinner'
 
 const App = () => {
 
@@ -20,7 +20,7 @@ const App = () => {
       <Navigation />
 
       <div id="App">
-        {/* <Sidebar /> */}
+        <GlobalLoadingSpinner />
 
         <Container className="py-5">
           <Routes>
@@ -40,6 +40,8 @@ const App = () => {
             <Route path="/movies" element={<GenreMoviesPage />} />
             <Route path="/movies/:id" element={<SingleMoviePage />} />
             <Route path="/movies/:id/actors/:id" element={<ActorsPage />} />
+
+            {/* <Route path="/actors/:id/" element={<ActorsPage />} /> */}
 
             <Route path="/search" element={<SearchMoviesPage />} />
 
