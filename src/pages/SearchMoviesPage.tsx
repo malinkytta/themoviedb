@@ -1,12 +1,13 @@
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Search from "../components/Search"
-import { useSearchParams } from "react-router-dom"
+import { useLocation, useSearchParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
 import { searchMovie } from "../services/TheMovieDB"
 import Pagination from "../components/Pagination"
 import Movies from "../components/Movies"
 import Row from 'react-bootstrap/Row'
+import ErrorComponent from "../components/ErrorComponent"
 
 const SearchMoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -17,7 +18,7 @@ const SearchMoviesPage = () => {
 
     searchParams.set('page', String(page))
 
-    const { data } = useQuery(['search-movies', { query, page }],
+    const { data, isError } = useQuery(['search-movies', { query, page }],
         () => searchMovie(query, page),
         {
             enabled: !!query,
@@ -30,6 +31,7 @@ const SearchMoviesPage = () => {
         newSearchParams.set('query', searchInput)
         newSearchParams.set('page', String(page))
         setSearchParams(newSearchParams)
+
     }
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -42,16 +44,29 @@ const SearchMoviesPage = () => {
         setSearchParams({ query: searchInput })
     }
 
+    useEffect(() => {
+        setSearchInput(searchParams.get("query") || "")
+    }, [searchParams])
+
     return (
         <>
+
+            {isError && (
+                <ErrorComponent />
+            )}
+
             <Search
                 handleSubmit={handleSubmit}
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
             />
 
+
             {data && (
                 <>
+
+                    <p>Showing {new Intl.NumberFormat().format(data.total_results)} movies for "{query}"</p>
+
                     <Row>
                         <Movies result={data} url={'movies/'} />
                     </Row>
@@ -64,7 +79,6 @@ const SearchMoviesPage = () => {
                         onPreviousPage={() => { newSearch(searchInput, String(page - 1)) }}
                         onNextPage={() => { newSearch(searchInput, String(page + 1)) }}
                     />
-
                 </>
             )}
         </>

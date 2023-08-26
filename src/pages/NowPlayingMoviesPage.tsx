@@ -1,14 +1,19 @@
 import CarouselComponent from "../components/CarouselComponent"
 import { useQuery } from '@tanstack/react-query';
 import { getNowPlaying } from '../services/TheMovieDB';
+import ErrorComponent from "../components/ErrorComponent";
 
 const NowPlayingMoviesPage = () => {
-    const { data: now_playing } = useQuery(['now_playing'], getNowPlaying);
+    const { data, isError } = useQuery(['now_playing'], getNowPlaying);
 
     return (
         <>
-            {now_playing && (
-                <CarouselComponent result={now_playing} />
+            {isError && (
+                <ErrorComponent />
+            )}
+
+            {data && (
+                <CarouselComponent result={data} />
             )}
         </>
     )

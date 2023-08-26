@@ -19,9 +19,9 @@ const Movies: React.FC<IProps> = ({ result, url }) => {
 
     const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/w500'
 
-
     return (
         <>
+
             <Row xs={1} sm={2} md={3} lg={4} className="g-4">
                 {result && (
                     <>
