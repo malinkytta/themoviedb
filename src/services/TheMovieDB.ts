@@ -50,11 +50,12 @@ export const getAllMovies = (page: number) => {
     return get<MovieResponse>(`/discover/movie?&page=${page}`)
 }
 
-export const getAllGenres = (page: number) => {
-    return get<Genre>(`/genre/movie/list?&page=${page}`)
+export const getAllGenres = async (page: number) => {
+    const data = await get<Genre>(`/genre/movie/list?&page=${page}`)
+    return data.genres
 }
 
-export const getGenre = (genreId: string | null, page: number) => {
+export const getGenre = (genreId: number, page: number) => {
     return get<MovieResponse>(`/discover/movie?&with_genres=${genreId}&page=${page}`)
 }
 
