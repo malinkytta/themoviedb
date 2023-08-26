@@ -23,23 +23,20 @@ const get = async <T>(endpoint: string) => {
     return response.data
 }
 
-// eventuellt lägga till parameter så man bara använder en, 
-// tex endpoint: string och sen har man 'movie' + endpoint?
-
 export const getNowPlaying = () => {
-    return get<MovieResponse>(`/movie/now_playing`)
+    return get<MovieResponse>(`/movie/now_playing?region=US&include_adult=false`)
 }
 
 export const getTopRated = () => {
-    return get<MovieResponse>('/movie/top_rated')
+    return get<MovieResponse>('/movie/top_rated?region=US&include_adult=false')
 }
 
 export const getPopular = () => {
-    return get<MovieResponse>('/movie/popular')
+    return get<MovieResponse>('/movie/popular?region=US&language=en-US')
 }
 
 export const getMovie = (id: number) => {
-    return get<Result>(`/movie/${id}?&append_to_response=credits,similar`)
+    return get<Result>(`/movie/${id}?&append_to_response=credits,similar,genre`)
 }
 
 export const getCast = (actorId: number) => {
@@ -47,7 +44,7 @@ export const getCast = (actorId: number) => {
 }
 
 export const getAllMovies = (page: number) => {
-    return get<MovieResponse>(`/discover/movie?&page=${page}`)
+    return get<MovieResponse>(`/discover/movie?&page=${page}&include_adult=false`)
 }
 
 export const getAllGenres = async (page: number) => {
@@ -55,10 +52,10 @@ export const getAllGenres = async (page: number) => {
     return data.genres
 }
 
-export const getGenre = (genreId: number, page: number) => {
+export const getGenre = (genreId: number | string, page: number) => {
     return get<MovieResponse>(`/discover/movie?&with_genres=${genreId}&page=${page}`)
 }
 
 export const searchMovie = (query: string, page: number) => {
-    return get<MovieResponse>(`/search/movie?query=${query}&page=${page}`)
+    return get<MovieResponse>(`/search/movie?query=${query}&page=${page}&include_adult=false`)
 }
