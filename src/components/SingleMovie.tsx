@@ -10,7 +10,6 @@ import { Result } from "../types/movieAPI.types"
 
 interface IProps {
     result: Result
-
 }
 
 const SingleMovie: React.FC<IProps> = ({ result }) => {
@@ -42,8 +41,8 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                                 <Card.Text>{result.overview}</Card.Text>
 
                                 <Card.Title>Similar movies:</Card.Title>
-                                {result.similar.results.slice(0, 5).map(title => (
-                                    <Button key={title.id} href={`${title.id}`}>{title.title}</Button>
+                                {result.similar.results.slice(0, 5).map(data => (
+                                    <Button key={data.id} href={`/movies/${data.id}`}>{data.title}</Button>
                                 ))}
 
 
@@ -63,7 +62,6 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                                         </Col>
                                     ))}
                                 </Row>
-
                             </Card.Body>
                         </Card>
                     </Row>
