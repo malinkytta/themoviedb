@@ -27,34 +27,23 @@ const TopRatedMovies: React.FC<Iprops> = ({ result }) => {
             <Row xs={1} md={2} lg={2} className="g-4">
                 {result && (
                     <>
-                        <Col className="d-flex align-items-stretch">
 
-                            <Card as={Link} to="/">
-                                <Card.Img variant="top" src={BASE_URL_IMAGE + result.results[0].backdrop_path} />
-                                <Card.Body>
-                                    <Card.Title>
-                                        {result.results[0].title}
-                                    </Card.Title>
-                                    <Card.Text>
-                                        ⭐️ {result.results[0].vote_average}
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col className="d-flex align-items-stretch">
+                        {result.results.slice(0, 2).map(data => (
+                            <Col className="d-flex align-items-stretch">
 
-                            <Card as={Link} to="/">
-                                <Card.Img variant="top" src={BASE_URL_IMAGE + result.results[1].backdrop_path} />
-                                <Card.Body>
-                                    <Card.Title>
-                                        {result.results[1].title}
-                                    </Card.Title>
-                                    <Card.Text>
-                                        ⭐️ {result.results[1].vote_average}
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                                <Card as={Link} to={`/top-rated/${data.id}`}>
+                                    <Card.Img variant="top" src={BASE_URL_IMAGE + data.backdrop_path} />
+                                    <Card.Body>
+                                        <Card.Title>
+                                            {data.title}
+                                        </Card.Title>
+                                        <Card.Text>
+                                            ⭐️ {data.vote_average}
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        ))}
                     </>
                 )}
             </Row>
