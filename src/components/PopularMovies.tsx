@@ -28,11 +28,12 @@ const PopularMovies: React.FC<IProps> = ({ result }) => {
                         >
                             All movies &gt;
                         </Button>
+
                     </div>
 
                     <Row xs={1} md={2} lg={3} className="g-4">
                         {result.results.slice(0, 3).map(data => (
-                            <Col className="d-flex align-items-stretch">
+                            <Col key={data.id} className="d-flex align-items-stretch">
                                 <Card as={Link} to={`movies/${data.id}`}>
                                     <Card.Img variant="top" src={BASE_URL_IMAGE + data.backdrop_path} />
                                     <Card.Body>
