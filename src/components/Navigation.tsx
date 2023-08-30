@@ -2,52 +2,88 @@ import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { NavLink, Link, useNavigate } from 'react-router-dom'
-import NavDropdown from 'react-bootstrap/NavDropdown'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import React, { useState } from 'react'
-
+import Offcanvas from 'react-bootstrap/Offcanvas'
+import ClickedMoviesComponent from "../components/ClickedMoviesComponent"
 
 const Navigation = () => {
     const [searchInput, setSearchInput] = useState("")
     const navigate = useNavigate()
+    const savedMovies = localStorage.getItem('clickedMovies')
+    const [showOffcanvas, setShowOffcanvas] = useState(false)
+
+    const closeOffcanvas = () => {
+        setShowOffcanvas(false)
+    }
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
         navigate(`/search?query=${encodeURIComponent(searchInput)}`)
     }
+    const clickedMovies = savedMovies ? JSON.parse(savedMovies) : []
 
     return (
-        <Navbar collapseOnSelect bg="dark" variant="dark" expand="md" >
+        <Navbar sticky='top' expand={false} data-bs-theme="dark" className="bg-body-tertiary mb-3">
             <Container>
-                <Navbar.Brand as={Link} to="/">The Movie DB</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="/search">Search</Nav.Link>
-                        <NavDropdown title="Movies" data-bs-theme="dark" id="collasible-nav-dropdown">
-                            <NavDropdown.Item as={NavLink} to="/popular-movies">Popular</NavDropdown.Item>
-                            <NavDropdown.Item as={NavLink} to="/top-rated">Top Rated</NavDropdown.Item>
-                            <NavDropdown.Item as={NavLink} to="/now-playing">Now Playing</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item as={NavLink} to="/movies">All movies</NavDropdown.Item>
-
-                        </NavDropdown>
-                    </Nav>
-
-                    <Form className="d-flex" onSubmit={handleSearch}>
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            value={searchInput}
-                            onChange={(e) => setSearchInput(e.target.value)}
-                        />
-                        <Button href="/search" variant="outline-success">Search</Button>
-                    </Form>
-                </Navbar.Collapse>
+                <Navbar.Brand as={Link} to={'/'}>The Movie DB</Navbar.Brand>
+                {/* <Form className="d-flex">
+                    <Form.Control
+                        type="search"
+                        placeholder="Search"
+                        className="me-2"
+                        aria-label="Search"
+                    />
+                    <Button variant="outline-success">Search</Button>
+                </Form> */}
+                <Navbar.Toggle onClick={() => setShowOffcanvas(true)} />
+                <Navbar.Offcanvas
+                    show={showOffcanvas}
+                    onHide={() => setShowOffcanvas(false)}
+                    data-bs-theme="dark"
+                    id={`offcanvasNavbar`}
+                    aria-labelledby={`offcanvasNavbarLabel`}
+                    placement="start"
+                >
+                    <Offcanvas.Header closeButton>
+                        <Offcanvas.Title id={`offcanvasNavbarLabel}`}>
+                            The Movie DB
+                        </Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                        <Nav>
+                            <Nav.Link as={NavLink} end to="/top-rated"
+                                className="nav-link"
+                                onClick={() => { closeOffcanvas() }}
+                            >
+                                Top Rated</Nav.Link>
+                            <Nav.Link
+                                as={NavLink} end to="/popular-movies"
+                                className="nav-link"
+                                onClick={() => { closeOffcanvas() }}
+                            >
+                                Popular</Nav.Link>
+                            <Nav.Link as={NavLink} end to="/now-playing"
+                                className="nav-link"
+                                onClick={() => { closeOffcanvas() }}
+                            >
+                                Now Playing</Nav.Link>
+                            <Nav.Link as={NavLink} end to="/movies"
+                                className="nav-link"
+                                onClick={() => { closeOffcanvas() }}
+                            >
+                                All Movies</Nav.Link>
+                        </Nav>
+                        <hr />
+                        <Container>
+                            <ClickedMoviesComponent result={clickedMovies} />
+                        </Container>
+                    </Offcanvas.Body>
+                </Navbar.Offcanvas>
             </Container>
         </Navbar>
+
     )
 }
 
