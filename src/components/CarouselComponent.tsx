@@ -1,8 +1,10 @@
-import Card from 'react-bootstrap/Card';
-import Carousel from 'react-bootstrap/Carousel';
-import { Link } from 'react-router-dom';
-import { MovieResponse } from '../types/movieAPI.types';
-import React from 'react';
+import Card from 'react-bootstrap/Card'
+import Carousel from 'react-bootstrap/Carousel'
+import { Link } from 'react-router-dom'
+import { MovieResponse } from '../types/movieAPI.types'
+import React from 'react'
+import Container from 'react-bootstrap/Container'
+import Image from 'react-bootstrap/Image'
 
 interface IProps {
     result: MovieResponse
@@ -14,32 +16,28 @@ const CarouselComponent: React.FC<IProps> = ({ result }) => {
 
     return (
         <>
-            <h1>In cinemas now</h1>
+            <h2>In cinemas now</h2>
 
             {result && (
-                <Carousel>
-                    {result.results.map((movie) => (
-                        <Carousel.Item key={movie.id}>
-                            <Card as={Link} to={`now-playing/${movie.id}`}>
-                                <Card.Img
-                                    className="img-movie"
-                                    variant="top"
-                                    src={BASE_URL_IMAGE + movie.backdrop_path}
-                                />
-                                <Card.ImgOverlay>
-                                    {/* <Card.Body> */}
-                                    <Card.Title>{movie.title}</Card.Title>
-                                    <Card.Text>
-                                        ⭐️ {movie.vote_average}
-                                    </Card.Text>
-                                    {/* </Card.Body> */}
-                                </Card.ImgOverlay>
 
-                            </Card>
-                        </Carousel.Item>
-                    ))}
-                </Carousel>
+                <Carousel interval={null} className="now-playing">
+                    {
+                        result.results.slice(0, 10).map(movie => (
+                            <Carousel.Item key={movie.id}>
+                                <Image
+                                    className="d-block w-100 img-movie"
+                                    src={BASE_URL_IMAGE + movie.backdrop_path}
+                                    alt="Movie poster"
+                                />
+                                <Carousel.Caption as={Link} to={`now-playing/${movie.id}`} className="mb-3">
+                                    <h3>{movie.title}</h3>
+                                </Carousel.Caption>
+                            </Carousel.Item >
+                        ))}
+
+                </Carousel >
             )}
+
         </>
     );
 };

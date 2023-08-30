@@ -1,23 +1,18 @@
 import TopRatedMoviesPage from "./TopRatedMoviesPage"
 import NowPlayingMoviesPage from "./NowPlayingMoviesPage"
 import PopularMoviesPage from "./PopularMoviesPage"
-import ClickedMoviesComponent from "../components/ClickedMoviesComponent"
-// import ClickedMoviesPage from "./ClickedMoviesPage"
-// import ClickedMoviesPage from "./ClickedMoviesPage"
+import Container from "react-bootstrap/Container"
 
 const HomePage = () => {
 
-    const savedMovies = localStorage.getItem('clickedMovies')
-    const clickedMovies = savedMovies ? JSON.parse(savedMovies) : []
-    // console.log(clickedMovies)
     return (
-
         <>
+            {/* <Container className="px-5"> */}
             <NowPlayingMoviesPage />
             <TopRatedMoviesPage />
             <PopularMoviesPage />
-            <ClickedMoviesComponent result={clickedMovies} />
-            {/* <ClickedMoviesPage /> */}
+            {/* </Container> */}
+
         </>
     )
 }
