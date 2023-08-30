@@ -29,7 +29,7 @@ const TopRatedMovies: React.FC<Iprops> = ({ result }) => {
                     <>
 
                         {result.results.slice(0, 2).map(data => (
-                            <Col className="d-flex align-items-stretch">
+                            <Col key={data.id} className="d-flex align-items-stretch">
 
                                 <Card as={Link} to={`/top-rated/${data.id}`}>
                                     <Card.Img variant="top" src={BASE_URL_IMAGE + data.backdrop_path} />

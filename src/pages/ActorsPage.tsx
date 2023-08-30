@@ -1,14 +1,13 @@
-import { useQuery } from "@tanstack/react-query"
 import { useParams } from "react-router-dom"
 import Actors from "../components/Actors"
-import { getCast } from "../services/TheMovieDB"
 import ErrorComponent from "../components/ErrorComponent"
+import useActor from "../hooks/useActor"
 
 const ActorsPage = () => {
     const { id } = useParams()
     const movieId = Number(id)
 
-    const { data, isError } = useQuery(['cast', { id: movieId }], () => getCast(movieId))
+    const { data, isError } = useActor(movieId)
 
     return (
         <>

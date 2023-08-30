@@ -1,13 +1,12 @@
 
 import { useEffect, useState } from "react"
 import Search from "../components/Search"
-import { useLocation, useSearchParams } from "react-router-dom"
-import { useQuery } from "@tanstack/react-query"
-import { searchMovie } from "../services/TheMovieDB"
+import { useSearchParams } from "react-router-dom"
 import Pagination from "../components/Pagination"
 import Movies from "../components/Movies"
 import Row from 'react-bootstrap/Row'
 import ErrorComponent from "../components/ErrorComponent"
+import useSearchMovie from "../hooks/useSearchMovie"
 
 const SearchMoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -18,21 +17,7 @@ const SearchMoviesPage = () => {
 
     searchParams.set('page', String(page))
 
-    const { data, isError } = useQuery(['search-movies', { query, page }],
-        () => searchMovie(query, page),
-        {
-            enabled: !!query,
-            keepPreviousData: true,
-        }
-    )
-
-    const newSearch = (searchInput: string, page: string) => {
-        const newSearchParams = new URLSearchParams(searchParams.toString())
-        newSearchParams.set('query', searchInput)
-        newSearchParams.set('page', String(page))
-        setSearchParams(newSearchParams)
-
-    }
+    const { data, isError } = useSearchMovie(query, page)
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -41,12 +26,19 @@ const SearchMoviesPage = () => {
             return
         }
 
-        setSearchParams({ query: searchInput })
+        setSearchParams({ query: searchInput, page: String(1) })
     }
 
     useEffect(() => {
         setSearchInput(searchParams.get("query") || "")
     }, [searchParams])
+
+    if (data) {
+        if (page > data.total_pages) {
+            <ErrorComponent />
+        }
+    }
+
 
     return (
         <>
@@ -60,7 +52,6 @@ const SearchMoviesPage = () => {
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
             />
-
 
             {data && (
                 <>
@@ -76,8 +67,12 @@ const SearchMoviesPage = () => {
                         totalPages={data.total_pages}
                         hasPreviousPage={page > 1}
                         hasNextPage={page < data.total_pages}
-                        onPreviousPage={() => { newSearch(searchInput, String(page - 1)) }}
-                        onNextPage={() => { newSearch(searchInput, String(page + 1)) }}
+                        onPreviousPage={() => setSearchParams({ query: searchInput, page: String(page - 1) })}
+
+                        // onPreviousPage={() => { newSearch(searchInput, String(page - 1)) }}
+                        // onNextPage={() => { newSearch(searchInput, String(page + 1)) }}
+                        onNextPage={() => setSearchParams({ query: searchInput, page: String(page + 1) })}
+
                     />
                 </>
             )}

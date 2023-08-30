@@ -1,11 +1,10 @@
-import { useQuery } from '@tanstack/react-query'
-import { getTopRated } from '../services/TheMovieDB'
 import TopRatedMovies from "../components/TopRatedMovies"
 import ErrorComponent from '../components/ErrorComponent'
+import useTopRated from '../hooks/useTopRated'
 
 
 const TopRatedMoviesPage = () => {
-    const { data, isError } = useQuery(['top-rated'], getTopRated)
+    const { data, isError } = useTopRated(1)
 
     return (
         <>
