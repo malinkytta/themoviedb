@@ -15,10 +15,7 @@ export type Result = {
     adult: false
     backdrop_path: string
     genres_id: Genre_Id[]
-    genres: [{
-        id: number
-        name: string
-    }]
+    genres: Genres[]
     homepage: string
     id: string
     original_language: string
@@ -79,8 +76,10 @@ export type Genre_Id = {
 }
 
 export type Genre = {
-    genres: [{
-        id: number
-        name: string
-    }]
+    genres: Genres[]
+}
+
+export type Genres = {
+    id: number,
+    name: string
 }

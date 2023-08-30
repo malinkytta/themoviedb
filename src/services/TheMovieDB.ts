@@ -23,16 +23,20 @@ const get = async <T>(endpoint: string) => {
     return response.data
 }
 
-export const getNowPlaying = () => {
-    return get<MovieResponse>(`/movie/now_playing?region=US&include_adult=false`)
+export const getNowPlaying = (page: number) => {
+    return get<MovieResponse>(`/movie/now_playing?region=US&include_adult=false&page=${page}`)
 }
 
-export const getTopRated = () => {
-    return get<MovieResponse>('/movie/top_rated?region=US&include_adult=false')
+export const getTopRated = (page: number) => {
+    return get<MovieResponse>(`/movie/top_rated?region=US&include_adult=false&page=${page}`)
 }
 
-export const getPopular = () => {
-    return get<MovieResponse>('/movie/popular?region=US&language=en-US')
+export const getPopular = (page: number) => {
+    return get<MovieResponse>(`/movie/popular?region=US&language=en-US&page=${page}`)
+}
+
+export const getTrending = (time_window: string, page: number) => {
+    return get<MovieResponse>(`/trending/movie/${time_window}?&page=${page}`)
 }
 
 export const getMovie = (id: number) => {
@@ -43,19 +47,15 @@ export const getCast = (actorId: number) => {
     return get<Cast>(`/person/${actorId}?append_to_response=movie_credits`)
 }
 
-export const getAllMovies = (page: number) => {
-    return get<MovieResponse>(`/discover/movie?&page=${page}&include_adult=false`)
-}
 
-export const getAllGenres = async (page: number) => {
-    const data = await get<Genre>(`/genre/movie/list?&page=${page}`)
-    return data.genres
+export const getAllGenres = () => {
+    return get<Genre>(`/genre/movie/list?`)
 }
 
 export const getGenre = (genreId: number | string, page: number) => {
     return get<MovieResponse>(`/discover/movie?&with_genres=${genreId}&page=${page}`)
 }
 
-export const searchMovie = (query: string, page: number) => {
+export const getSearchMovie = (query: string, page: number) => {
     return get<MovieResponse>(`/search/movie?query=${query}&page=${page}&include_adult=false`)
 }
