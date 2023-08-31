@@ -1,9 +1,7 @@
-import Card from 'react-bootstrap/Card'
 import Carousel from 'react-bootstrap/Carousel'
 import { Link } from 'react-router-dom'
 import { MovieResponse } from '../types/movieAPI.types'
 import React from 'react'
-import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
 
 interface IProps {
@@ -16,17 +14,20 @@ const CarouselComponent: React.FC<IProps> = ({ result }) => {
 
     return (
         <>
-            <h2>In cinemas now</h2>
+            <h2 className="now-playing-title">In cinemas now</h2>
 
             {result && (
 
-                <Carousel interval={null} className="now-playing">
+                <Carousel interval={null} className="now-playing mt-5">
                     {
                         result.results.slice(0, 10).map(movie => (
                             <Carousel.Item key={movie.id}>
                                 <Image
                                     className="d-block w-100 img-movie"
-                                    src={BASE_URL_IMAGE + movie.backdrop_path}
+                                    src={movie.backdrop_path
+                                        ? BASE_URL_IMAGE + movie.backdrop_path
+                                        : 'https://placehold.co/250x400'
+                                    }
                                     alt="Movie poster"
                                 />
                                 <Carousel.Caption as={Link} to={`now-playing/${movie.id}`} className="mb-3">
