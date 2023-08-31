@@ -1,10 +1,187 @@
 @import "bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@100;300&display=swap');
+
+body {
+    background-color: #212529;
+}
+
+#root {
+    background-color: #212529;
+}
 
 #App {
-    background-color: rgb(33, 37, 41);
     min-height: 100vh;
     color: white;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+p,
+a {
+    font-family: 'Raleway', sans-serif;
+}
+
+.h5 {
+    font-size: 2.7rem;
+    text-align: center;
+}
+
+// h2 {
+//     font-size: 3.7rem;
+// }
+
+.navbar {
+    background: rgba(31, 35, 39, 0.79);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11.2px);
+    -webkit-backdrop-filter: blur(11.2px);
+    border: 1px solid rgba(33, 37, 41, 1);
+}
+
+
+.navbar>.container {
+    justify-content: flex-end;
+}
+
+.navbar .navbar-brand {
+    font-family: 'Bebas Neue';
+    font-size: 24px;
+}
+
+.navbar-toggler {
+    border: none;
+    color: white;
+
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+
+.navbar-nav .nav-link.active {
+    background-color: #474e47;
+}
+
+.offcanvas-body {
+    padding: 0;
+    overflow-y: hidden;
+}
+
+.navbar-nav {
+    text-align: center;
+}
+
+.nav-link:hover {
+    background-color: #474e47;
+}
+
+.vertical-ruler {
+    border-right: 1px solid grey;
+    height: 30px;
+    margin: 0 15px;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.carousel-inner {
+    border-radius: 10px;
+
+}
+
+
+.genres .btn {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.now-playing-title {
+    position: absolute;
+    top: 8%;
+    left: 10%;
+    transform: translateX(-10%);
+    z-index: 2;
+    padding: 10px;
+    margin: 0;
+    font-size: 5.5vw;
+    text-align: center;
+    filter: drop-shadow(0px 0px 7px #000);
+}
+
+.now-playing {
+    position: relative;
+    border: none;
+    text-align: center;
+    z-index: 1;
+
+    .carousel-inner {
+        border-radius: 0;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    h3 {
+        font-size: 1.7rem;
+        filter: drop-shadow(0px 0px 3px #000);
+    }
+
+    .img-movie {
+        object-fit: cover;
+        height: 400px;
+    }
+}
+
+.slider {
+    overflow-x: scroll;
+    height: 360px;
+}
+
+
+.custom-carousel .carousel-control-prev {
+    left: 10px;
+    right: auto;
+}
+
+.custom-carousel .carousel-control-next {
+    right: 10px;
+    left: auto;
+}
+
+.custom-carousel .carousel-indicators {
+    opacity: 0;
+}
+
+// .movies-card {
+//     .card-img {
+//         border-bottom-right-radius: 0;
+//         border-bottom-left-radius: 0;
+//     }
+// }
+
+// .card {
+//     border: none;
+//     filter: drop-shadow(0px 0px 7px #000);
+
+// }
+
+
+
+// .this .carousel-indicators {
+//     bottom: -42px;
+// }
 
 
 .scrolling-wrapper {
@@ -23,71 +200,193 @@
     }
 }
 
-.img-movie {
-    object-fit: cover;
-    height: 300px,
+
+.similar-movies-btn.btn.btn-outline-secondary {
+    border-radius: 20px;
 }
 
+// .homepage-cards {
+//     width: 300px;
+//     background: rgba(31, 35, 39, 0.79);
+//     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+//     backdrop-filter: blur(11.2px);
+//     -webkit-backdrop-filter: blur(11.2px);
+//     border: 1px solid rgba(33, 37, 41, 1);
 
-input[type="checkbox"].toggle {
-    opacity: 0;
-    position: absolute;
-    left: -9000px;
-    top: -9000px;
-}
+//     overflow-x: auto;
+//     -webkit-overflow-scrolling: touch;
+//     display: grid;
+//     grid-gap: 1rem;
+//     grid-auto-flow: column;
+//     grid-auto-columns: calc(100% - 2rem);
+//     min-height: 100vh;
+// }
 
-input[type="checkbox"].toggle+label {
+
+
+// input[type="checkbox"].toggle {
+//     opacity: 0;
+//     position: absolute;
+//     left: -9000px;
+//     top: -9000px;
+// }
+
+// input[type="checkbox"].toggle+label {
+//     position: relative;
+//     display: flex;
+//     align-items: center;
+//     cursor: pointer;
+// }
+
+// // 
+// input[type="checkbox"].toggle+label::before {
+//     display: flex;
+//     justify-content: end;
+//     align-items: center;
+//     padding: 2em;
+//     content: "This Week";
+//     font-size: .5em;
+//     width: 20em;
+//     height: 4em;
+//     border-radius: 10em;
+//     background-color: #DDD;
+//     transition: 200ms ease-in-out;
+// }
+
+// input[type="checkbox"].toggle+label::after {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     position: absolute;
+//     content: "Today";
+//     font-size: .5em;
+//     width: 10em; // själva "toggle-knappens" storlek
+//     height: 4em; // själva "toggle-knappens" storlek
+//     background-color: #425342;
+//     border-radius: 3em;
+//     transition: 200ms ease-in-out;
+// }
+
+// input[type="checkbox"].toggle:checked+label::before {
+//     display: flex;
+//     justify-content: start;
+//     align-items: center;
+//     padding: 2em;
+//     font-size: .5em;
+//     height: 4em;
+//     width: 20em;
+//     border-radius: 10em;
+//     background-color: #DDD;
+//     content: "Today" //när grön knapp är till höger visas denna
+// }
+
+
+// input[type="checkbox"].toggle:checked+label::after {
+//     content: "This Week";
+//     transform: translateX(100%);
+//     background-color: #425342;
+// }
+
+
+
+
+
+
+
+
+///// TEST
+/// 
+/// 
+/// 
+/// 
+/// 
+/// 
+/// 
+
+
+
+.movies-card {
     position: relative;
-    display: flex;
-    align-items: center;
+    width: 225px;
+    // height: 100%;
+    height: 303px;
+    background: #000;
+    // border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .2);
     cursor: pointer;
 }
 
-// 
-input[type="checkbox"].toggle+label::before {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    padding: 2em;
-    content: "This Week";
-    font-size: .5em;
-    width: 20em;
-    height: 4em;
-    border-radius: 10em;
-    background-color: #DDD;
-    transition: 200ms ease-in-out;
+.poster {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
-input[type="checkbox"].toggle+label::after {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+// .poster::before {
+//     content: '';
+//     position: absolute;
+//     bottom: -45%;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     z-index: 1;
+//     transition: .3s;
+// }
+
+.card:hover .poster::before {
+    bottom: 0;
+}
+
+.poster img {
     position: absolute;
-    content: "Today";
-    font-size: .5em;
-    width: 10em; // själva "toggle-knappens" storlek
-    height: 4em; // själva "toggle-knappens" storlek
-    background-color: #425342;
-    border-radius: 3em;
-    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    transition: .3s;
 }
 
-input[type="checkbox"].toggle:checked+label::before {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding: 2em;
-    font-size: .5em;
-    height: 4em;
-    width: 20em;
-    border-radius: 10em;
-    background-color: #DDD;
-    content: "Today" //när grön knapp är till höger visas denna
+.card:hover .poster img {
+    transform: scale(1.1);
 }
 
+.details {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding: 1.5em 1.5em 2em;
+    background: #000a;
+    backdrop-filter: blur(16px) saturate(120%);
+    transition: .3s;
+    color: #fff;
+    z-index: 2;
+}
 
-input[type="checkbox"].toggle:checked+label::after {
-    content: "This Week";
-    transform: translateX(100%);
-    background-color: #425342;
+.card:hover .details {
+    bottom: 0;
+}
+
+// .details h1,
+// .details h2 {
+//     font-weight: 700;
+// }
+
+.details h1 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.details h2 {
+    font-weight: 400;
+    font-size: 1em;
+    margin-bottom: 10px;
+    opacity: .6;
 }
