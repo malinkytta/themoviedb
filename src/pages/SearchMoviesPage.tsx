@@ -72,15 +72,6 @@ const SearchMoviesPage = () => {
                             title={'Search Movies'}
                         />
                     </Row>
-
-                    <Pagination
-                        page={page}
-                        totalPages={data.total_pages}
-                        hasPreviousPage={page > 1}
-                        hasNextPage={page < data.total_pages}
-                        onPreviousPage={() => setSearchParams({ query: searchInput, page: String(page - 1) })}
-                        onNextPage={() => setSearchParams({ query: searchInput, page: String(page + 1) })}
-                    />
                 </>
             )}
         </>
