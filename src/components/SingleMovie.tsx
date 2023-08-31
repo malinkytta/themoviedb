@@ -15,7 +15,7 @@ interface IProps {
 }
 
 const SingleMovie: React.FC<IProps> = ({ result }) => {
-    const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/500'
+    const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/w500'
     const BASE_URL_PROFILE_IMAGE = 'https://image.tmdb.org/t/p/w185'
 
     const navigate = useNavigate()
