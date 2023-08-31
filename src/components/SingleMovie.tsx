@@ -15,32 +15,25 @@ interface IProps {
 }
 
 const SingleMovie: React.FC<IProps> = ({ result }) => {
-    const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/w500'
+    const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/original'
     const BASE_URL_PROFILE_IMAGE = 'https://image.tmdb.org/t/p/w185'
 
+    console.log(BASE_URL_IMAGE + result.backdrop_path)
     const navigate = useNavigate()
+
     return (
         <>
-            <ListGroup className="mb-3 my-3">
-
-                <ListGroup.Item className=" px-4 py-4">
+            <div className="background-image" style={{
+                backgroundImage: "url(" + BASE_URL_IMAGE + (result.poster_path) + ")"
+            }} >
+                <div className="blur">
+                    {/* <ListGroup className="mb-3 my-3"> */}
+                    {/* <ListGroup.Item className=" px-4 py-4"> */}
                     <Button variant='secondary' className="mb-3" onClick={() => navigate(-1)}>&laquo; Go Back</Button>
-
-                    <Row xs={1} md={2} lg={2} className="g-4">
-                        <Col>
-                            <Card>
-                                <Card.Body>
-                                    <Card.Img src={result.poster_path
-                                        ? BASE_URL_IMAGE + (result.poster_path)
-                                        : 'https://placehold.co/140x185'}
-                                    />
-                                </Card.Body>
-                            </Card>
-                        </Col>
-
-                        <Card>
-                            <Card.Body>
-
+                    <Container>
+                        <Row xs={1} md={2} lg={2} className="g-4">
+                            <Card className="transparent-bg">
+                                {/* <Card.Body> */}
                                 <h2>{result.title}</h2>
                                 {result.genres.map(genre => (
                                     <Card.Text key={genre.id}>{genre.name}</Card.Text>
@@ -55,33 +48,46 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                                 {result.similar.results.slice(0, 5).map(data => (
                                     <Button key={data.id} variant="outline-secondary" className="similar-movies-btn mb-2 m-2" href={`/movies/${data.id}`}>{data.title}</Button>
                                 ))}
-                                <Card.Title>Actors:</Card.Title>
+                            </Card>
+                            <Col>
+                                <Card>
+                                    <Card.Body>
+                                        <Card.Img src={BASE_URL_IMAGE + (result.poster_path)} />
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        </Row>
+                    </Container>
 
-                                <Container fluid>
-                                    <div className="scrolling-wrapper row flex-row flex-nowrap">
-                                        {result.credits.cast.map(actor => (
-                                            <Col md={5} className="card-block" key={actor.id}>
-                                                <Card className="card-block">
-                                                    <Card.Body as={Link} to={`actors/${actor.id}`}>
-                                                        {actor.profile_path
-                                                            ? <Image src={BASE_URL_PROFILE_IMAGE + actor.profile_path} />
-                                                            : <Image src='https://placehold.co/500x750' />
-                                                        }
-                                                        <Card.Text>
-                                                            {actor.name}
-                                                        </Card.Text>
-                                                    </Card.Body>
-                                                </Card>
-                                            </Col>
-                                        ))}
-                                    </div>
+                    <Card>
+                        <Card.Title>Actors:</Card.Title>
+                        {/* <Container fluid> */}
+                        <div className="scrolling-wrapper row flex-row flex-nowrap">
+                            {result.credits.cast.map(actor => (
+                                <Col md={5} className="card-block" key={actor.id}>
+                                    <Card className="card-block">
+                                        <Card.Body as={Link} to={`actors/${actor.id}`}>
+                                            {actor.profile_path
+                                                ? <Image src={BASE_URL_PROFILE_IMAGE + actor.profile_path} />
+                                                : <Image src='https://placehold.co/500x750' />
+                                            }
+                                            <Card.Text>
+                                                {actor.name}
+                                            </Card.Text>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            ))}
+                        </div>
 
-                                </Container>
-                            </Card.Body>
-                        </Card>
-                    </Row>
-                </ListGroup.Item>
-            </ListGroup>
+                        {/* </Container> */}
+                        {/* </Card.Body> */}
+                    </Card>
+                    {/* </Row> */}
+                    {/* </ListGroup.Item> */}
+                    {/* </ListGroup > */}
+                </div>
+            </div>
         </>
     )
 }
