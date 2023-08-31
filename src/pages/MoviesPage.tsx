@@ -4,13 +4,17 @@ import ErrorComponent from "../components/ErrorComponent"
 import useNowPlaying from "../hooks/useNowPlaying"
 import useTopRated from "../hooks/useTopRated"
 import useTrending from "../hooks/useTrending"
+import { useEffect, useState } from "react"
+import Button from "react-bootstrap/Button"
 
 const MoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const page = Number(searchParams.get('page') ?? 1)
     const timeWindow = searchParams.get('time-window') ?? 'day'
+    const [toggle, setToggle] = useState(true)
 
     const toggleText = () => {
+        setToggle(!toggle)
         const newTimeWindow = (timeWindow === 'day' ? 'week' : 'day')
         setSearchParams({ 'time-window': newTimeWindow, page: String(1) })
     }
@@ -27,49 +31,80 @@ const MoviesPage = () => {
         )
     }
 
+    useEffect(() => {
+
+    }, [setSearchParams])
+
     return (
         <>
-            {popular.data && location.pathname === '/popular-movies' && (
-                <>
-                    <h2>Popular Movies</h2>
-                    <input type="checkbox" id="check" className="toggle" checked={timeWindow === 'week'} readOnly />
-                    <label htmlFor="check" onClick={toggleText} />
-
-                    <Movies result={popular.data}
-                        url={'popular-movies/'}
-                        currentPage={page}
-                        setSearchParams={setSearchParams}
-                        time={timeWindow}
-                        data={popular} />
-                </>
-            )}
-
-            {top_rated.data && location.pathname === '/top-rated' && (
-                <>
-                    <h2>Top Rated Movies</h2>
-
-                    <Movies result={top_rated.data}
-                        url={'top-rated/'}
-                        currentPage={page}
-                        setSearchParams={setSearchParams}
-                        time={timeWindow}
-                        data={top_rated} />
-                </>
-            )}
 
             {now_playing.data && location.pathname === '/now-playing' && (
                 <>
-                    <h1>Now Playing in Cinemas</h1>
                     <Movies
                         result={now_playing.data}
-                        url={'now-playing/'}
+                        url={'/now-playing'}
                         currentPage={page}
                         setSearchParams={setSearchParams}
-                        time={timeWindow}
-                        data={now_playing}
+                        text={timeWindow}
+                        useTimeWindow={false}
+                        useQuery={false}
+                        useGenre={false}
+                        title={'Now playing in Cinemas'}
                     />
                 </>
             )}
+
+            {
+                top_rated.data && location.pathname === '/top-rated' && (
+                    <>
+                        <Movies
+                            result={top_rated.data}
+                            url={'/top-rated'}
+                            currentPage={page}
+                            setSearchParams={setSearchParams}
+                            text={timeWindow}
+                            useTimeWindow={false}
+                            useQuery={false}
+                            useGenre={false}
+                            title={'Top rated movies'}
+                        />
+                    </>
+                )
+            }
+
+            {popular.data && location.pathname === '/popular-movies' && (
+                <>
+                    <div className="d-flex px-4">
+                        <p>Sort by</p>
+                        <Button
+                            data-bs-theme='dark'
+                            className=""
+                            variant="transparent"
+                            onClick={toggleText}
+                        >
+                            {toggle ? 'day' : 'week'}
+                        </Button>
+
+                    </div>
+
+                    <Movies
+                        result={popular.data}
+                        url={'/popular-movies'}
+                        currentPage={page}
+                        setSearchParams={setSearchParams}
+                        text={timeWindow}
+                        useTimeWindow={true}
+                        useQuery={false}
+                        useGenre={false}
+                        title={'Popular movies'}
+                    />
+                </>
+            )
+            }
+
+
+
+
         </>
     )
 }

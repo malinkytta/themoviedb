@@ -47,7 +47,6 @@ export const getCast = (actorId: number) => {
     return get<Cast>(`/person/${actorId}?append_to_response=movie_credits`)
 }
 
-
 export const getAllGenres = () => {
     return get<Genre>(`/genre/movie/list?`)
 }

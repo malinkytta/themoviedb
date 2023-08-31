@@ -33,6 +33,7 @@ const SearchMoviesPage = () => {
         setSearchInput(searchParams.get("query") || "")
     }, [searchParams])
 
+
     if (data) {
         if (page > data.total_pages) {
             <ErrorComponent />
@@ -53,13 +54,23 @@ const SearchMoviesPage = () => {
                 setSearchInput={setSearchInput}
             />
 
-            {data && (
+            {data && data.results.length > 0 && (
                 <>
 
                     <p>Showing {new Intl.NumberFormat().format(data.total_results)} movies for "{query}"</p>
 
                     <Row>
-                        <Movies result={data} url={'movies/'} />
+                        <Movies
+                            result={data}
+                            url={'/movies'}
+                            currentPage={page}
+                            setSearchParams={setSearchParams}
+                            text={query}
+                            useTimeWindow={false}
+                            useQuery={true}
+                            useGenre={false}
+                            title={'Search Movies'}
+                        />
                     </Row>
 
                     <Pagination
@@ -68,11 +79,7 @@ const SearchMoviesPage = () => {
                         hasPreviousPage={page > 1}
                         hasNextPage={page < data.total_pages}
                         onPreviousPage={() => setSearchParams({ query: searchInput, page: String(page - 1) })}
-
-                        // onPreviousPage={() => { newSearch(searchInput, String(page - 1)) }}
-                        // onNextPage={() => { newSearch(searchInput, String(page + 1)) }}
                         onNextPage={() => setSearchParams({ query: searchInput, page: String(page + 1) })}
-
                     />
                 </>
             )}
