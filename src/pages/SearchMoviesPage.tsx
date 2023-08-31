@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react"
 import Search from "../components/Search"
 import { useSearchParams } from "react-router-dom"
-import Pagination from "../components/Pagination"
 import Movies from "../components/Movies"
 import Row from 'react-bootstrap/Row'
 import ErrorComponent from "../components/ErrorComponent"
