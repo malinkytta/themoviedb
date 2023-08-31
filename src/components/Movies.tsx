@@ -1,13 +1,11 @@
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 import { MovieResponse } from '../types/movieAPI.types'
 import Pagination from './Pagination'
 import ErrorComponent from './ErrorComponent'
 import React from 'react'
 import { Link, SetURLSearchParams } from 'react-router-dom'
-import { UseQueryResult, useQuery } from '@tanstack/react-query'
 import { Container } from 'react-bootstrap'
 
 

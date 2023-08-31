@@ -2,20 +2,17 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-
 import { Link } from 'react-router-dom'
 import { MovieResponse } from '../types/movieAPI.types'
 import React from 'react'
-import Form from 'react-bootstrap/Form'
 
 interface IProps {
     result: MovieResponse
     toggleText: (e: React.FormEvent) => void
-    text: string
     toggle: boolean
 }
 
-const PopularMovies: React.FC<IProps> = ({ result, toggleText, text, toggle }) => {
+const PopularMovies: React.FC<IProps> = ({ result, toggleText, toggle }) => {
     const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/original'
 
 

@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import { NavLink, Link, useNavigate } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { useState } from 'react'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import ClickedMoviesComponent from "../components/ClickedMoviesComponent"

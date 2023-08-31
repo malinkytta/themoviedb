@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button"
 import ListGroup from "react-bootstrap/ListGroup"
 
 import { Cast } from "../types/cast.types"
-import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Container from "react-bootstrap/Container"
 
@@ -15,7 +14,7 @@ interface IProps {
     url: string
 }
 const Actors: React.FC<IProps> = ({ result, url }) => {
-    const [show, setShow] = useState(false)
+    // const [show, setShow] = useState(false)
 
     const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/original'
     const BASE_URL_PROFILE_IMAGE = 'https://image.tmdb.org/t/p/w154'
