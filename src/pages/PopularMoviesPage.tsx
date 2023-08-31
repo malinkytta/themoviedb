@@ -1,21 +1,38 @@
 
-import { useQuery } from '@tanstack/react-query'
-import { getPopular } from '../services/TheMovieDB'
 import PopularMovies from "../components/PopularMovies"
 import ErrorComponent from '../components/ErrorComponent'
-
+import useTrending from "../hooks/useTrending"
+import { useSearchParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 const PopularMoviesPage = () => {
-    const { data, isError } = useQuery(['popular'], getPopular)
+    const [searchParams, setSearchParams] = useSearchParams()
+    const timeWindow = searchParams.get('time-window') ?? 'day'
+    const [toggle, setToggle] = useState(true)
+
+    const toggleText = () => {
+        setToggle(!toggle)
+        toggle ? 'week' : 'day'
+        const newTimeWindow = (toggle ? 'week' : 'day')
+        setSearchParams({ 'time-window': newTimeWindow })
+
+    }
+    const { data, isError } = useTrending(timeWindow, 1)
 
     return (
         <>
+
             {isError && (
                 <ErrorComponent />
             )}
 
             {data && (
-                <PopularMovies result={data} />
+                <PopularMovies
+                    result={data}
+                    toggleText={toggleText}
+                    text={timeWindow}
+                    toggle={toggle}
+                />
             )}
         </>
     )
