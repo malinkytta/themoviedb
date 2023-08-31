@@ -5,7 +5,7 @@ import Image from "react-bootstrap/Image"
 import Button from "react-bootstrap/Button"
 import ListGroup from "react-bootstrap/ListGroup"
 
-import { Cast, TMDB_CastResponse } from "../types/cast.types"
+import { Cast } from "../types/cast.types"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Container from "react-bootstrap/Container"

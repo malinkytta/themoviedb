@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import Container from 'react-bootstrap/Container'
 import HomePage from './pages/HomePage'
 import NotFound from './pages/NotFound'
 import Navigation from './components/Navigation'
@@ -18,40 +17,31 @@ const App = () => {
   return (
     <>
       <Navigation />
-
       <div id="App">
         <GlobalLoadingSpinner />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/popular-movies" element={<MoviesPage />} />
+          <Route path="/popular-movies/:id" element={<SingleMoviePage />} />
+          <Route path="/popular-movies/:id/actors/:id" element={<ActorsPage />} />
 
-        <Container className="py-5">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/popular-movies" element={<MoviesPage />} />
-            <Route path="/popular-movies/:id" element={<SingleMoviePage />} />
-            <Route path="/popular-movies/:id/actors/:id" element={<ActorsPage />} />
+          <Route path="/top-rated" element={<MoviesPage />} />
+          <Route path="/top-rated/:id" element={<SingleMoviePage />} />
+          <Route path="/top-rated/:id/actors/:id" element={<ActorsPage />} />
 
-            <Route path="/top-rated" element={<MoviesPage />} />
-            <Route path="/top-rated/:id" element={<SingleMoviePage />} />
-            <Route path="/top-rated/:id/actors/:id" element={<ActorsPage />} />
+          <Route path="/now-playing" element={<MoviesPage />} />
+          <Route path="/now-playing/:id" element={<SingleMoviePage />} />
+          <Route path="/now-playing/:id/actors/:id" element={<ActorsPage />} />
 
-            <Route path="/now-playing" element={<MoviesPage />} />
-            <Route path="/now-playing/:id" element={<SingleMoviePage />} />
-            <Route path="/now-playing/:id/actors/:id" element={<ActorsPage />} />
+          <Route path="/movies" element={<GenreMoviesPage />} />
+          <Route path="/movies/:id" element={<SingleMoviePage />} />
+          <Route path="/movies/:id/actors/:id" element={<ActorsPage />} />
+          <Route path="/search" element={<SearchMoviesPage />} />
 
-            <Route path="/movies" element={<GenreMoviesPage />} />
-            <Route path="/movies/:id" element={<SingleMoviePage />} />
-            <Route path="/movies/:id/actors/:id" element={<ActorsPage />} />
+          <Route path="*" element={<NotFound />} />
 
-            {/* <Route path="/actors/:id/" element={<ActorsPage />} /> */}
-
-            <Route path="/search" element={<SearchMoviesPage />} />
-
-            <Route path="*" element={<NotFound />} />
-
-          </Routes>
-        </Container>
-
+        </Routes>
         <ReactQueryDevtools initialIsOpen={false} position='bottom-right' />
-
       </div>
     </>
   )
