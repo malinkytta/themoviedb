@@ -3,7 +3,7 @@ import Col from "react-bootstrap/Col"
 import Card from "react-bootstrap/Card"
 import Image from "react-bootstrap/Image"
 import Button from "react-bootstrap/Button"
-import Placeholder from '../assets/images/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg'
+// import Placeholder from '../assets/images/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg'
 
 import ListGroup from "react-bootstrap/ListGroup"
 import { Link, useNavigate } from "react-router-dom"
@@ -15,7 +15,7 @@ interface IProps {
 }
 
 const SingleMovie: React.FC<IProps> = ({ result }) => {
-    const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/original'
+    const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/500'
     const BASE_URL_PROFILE_IMAGE = 'https://image.tmdb.org/t/p/w185'
 
     const navigate = useNavigate()
@@ -30,7 +30,10 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                         <Col>
                             <Card>
                                 <Card.Body>
-                                    <Card.Img src={BASE_URL_IMAGE + (result.poster_path)} />
+                                    <Card.Img src={result.poster_path
+                                        ? BASE_URL_IMAGE + (result.poster_path)
+                                        : 'https://placehold.co/140x185'}
+                                    />
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -40,7 +43,7 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
 
                                 <h2>{result.title}</h2>
                                 {result.genres.map(genre => (
-                                    <Card.Text>{genre.name}</Card.Text>
+                                    <Card.Text key={genre.id}>{genre.name}</Card.Text>
                                 )
                                 )}
                                 <Card.Text>{result.runtime}</Card.Text>
@@ -62,7 +65,7 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                                                     <Card.Body as={Link} to={`actors/${actor.id}`}>
                                                         {actor.profile_path
                                                             ? <Image src={BASE_URL_PROFILE_IMAGE + actor.profile_path} />
-                                                            : <Image src={Placeholder} />
+                                                            : <Image src='https://placehold.co/500x750' />
                                                         }
                                                         <Card.Text>
                                                             {actor.name}
