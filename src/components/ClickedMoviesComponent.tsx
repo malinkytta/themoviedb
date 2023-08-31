@@ -15,26 +15,33 @@ const ClickedMoviesComponent: React.FC<Iprops> = ({ result }) => {
 
     return (
         <>
-            <div className="d-flex justify-content-center align-content-center">
-                <h3>Recently watched</h3>
-                <div className="vertical-ruler"> </div>
-                <p>{result.length && result.length > 1 ? `${result.length} movies` : `${result.length} movie`}</p>
+            <div className="d-flex justify-content-center align-self-center">
+                <h3 className="justify-self-center">Recently watched</h3>
+                <p className="vertical-ruler"> </p>
+                <p className="align-self-center">{result.length && result.length > 1 ? `${result.length} movies` : `${result.length} movie`}</p>
             </div>
 
             {result && result.length > 0 && (
                 <>
-                    <Container className="pt-3 px-5 py-5">
-                        <Carousel className="mb-5" interval={null} >
+                    <Container className="pt-3 px-5 py-2">
+                        <Carousel className="mb-5  custom-carousel" interval={null} >
                             {result.map((movie) => (
                                 <Carousel.Item key={movie.id}>
                                     <div className="d-flex justify-content-center">
-                                        <Card as={Link} to={`now-playing/${movie.id}`} className="mx-3">
+                                        <Card
+                                            className="mx-3"
+                                            style={{ width: "300px" }}
+                                        >
                                             <Card.Img
+                                                style={{ height: "100%", objectFit: "cover" }}
                                                 className="img-movie"
                                                 variant="top"
-                                                src={BASE_URL_IMAGE + movie.backdrop_path}
+                                                src={movie.backdrop_path
+                                                    ? BASE_URL_IMAGE + movie.backdrop_path
+                                                    : 'https://placehold.co/500x300'
+                                                }
                                             />
-                                            <Card.Title>{movie.title}</Card.Title>
+                                            <Card.Title as={Link} to={`movies/${movie.id}`}>{movie.title}</Card.Title>
                                         </Card>
 
                                     </div>
