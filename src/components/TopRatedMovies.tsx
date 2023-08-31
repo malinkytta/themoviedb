@@ -1,9 +1,6 @@
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
-
 import { Link } from 'react-router-dom'
 import { MovieResponse } from '../types/movieAPI.types'
 
@@ -15,15 +12,6 @@ const TopRatedMovies: React.FC<Iprops> = ({ result }) => {
 
     return (
         <>
-            {/* <div className="d-flex justify-content-end px-3 py-4">
-                {/* <Button
-                    variant="dark"
-                    href={`top-rated`}
-                >
-                    All movies &gt;
-                </Button>
-            </div> */}
-
             <h2 className="py-4 top-rated-title">Top Rated Movies</h2>
 
             {result && (
@@ -50,7 +38,6 @@ const TopRatedMovies: React.FC<Iprops> = ({ result }) => {
             )
             }
         </>
-        // </Container >
     )
 }
 
