@@ -6,13 +6,13 @@ import ErrorComponent from "../components/ErrorComponent"
 import useGenres from "../hooks/useGenres"
 import useSingleGenre from "../hooks/useSingleGenre"
 import GenreDropdown from "../components/GenreDropdown"
+import Container from "react-bootstrap/Container"
 
 const GenreMoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [title, setTitle] = useState(localStorage.getItem("genreTitle") || "")
     const [searchInput, setSearchInput] = useState('')
     const navigate = useNavigate()
-
 
     const genreId = searchParams.get('genre') ?? ''
     const page = Number(searchParams.get('page') ?? 1)
@@ -42,16 +42,14 @@ const GenreMoviesPage = () => {
         navigate(`/search?query=${encodeURIComponent(searchInput)}`)
     }
 
-
     if (genreTitles.isError || singleGenre.isError) {
         return (
             <ErrorComponent />
         )
     }
 
-
     return (
-        <>
+        <Container>
 
             <Search
                 handleSubmit={handleSubmit}
@@ -79,11 +77,10 @@ const GenreMoviesPage = () => {
                     useQuery={false}
                     useGenre={true}
                     genreId={genreId}
-                    title={'Choose genre'}
                 />
             )}
 
-        </>
+        </Container>
     )
 }
 

@@ -19,7 +19,7 @@ interface IProps {
     useQuery: boolean
     useGenre: boolean
     genreId?: string
-    title: string
+    title?: string
 }
 
 const Movies: React.FC<IProps> = ({

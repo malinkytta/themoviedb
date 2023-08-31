@@ -3,7 +3,7 @@ import PopularMovies from "../components/PopularMovies"
 import ErrorComponent from '../components/ErrorComponent'
 import useTrending from "../hooks/useTrending"
 import { useSearchParams } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const PopularMoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -15,13 +15,11 @@ const PopularMoviesPage = () => {
         toggle ? 'week' : 'day'
         const newTimeWindow = (toggle ? 'week' : 'day')
         setSearchParams({ 'time-window': newTimeWindow })
-
     }
     const { data, isError } = useTrending(timeWindow, 1)
 
     return (
         <>
-
             {isError && (
                 <ErrorComponent />
             )}
@@ -33,6 +31,7 @@ const PopularMoviesPage = () => {
                     toggle={toggle}
                 />
             )}
+
         </>
     )
 }

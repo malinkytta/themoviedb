@@ -14,20 +14,21 @@ const TopRatedMovies: React.FC<Iprops> = ({ result }) => {
     const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/w500'
 
     return (
-        <Container>
-            <div className="d-flex justify-content-between pt-5">
-                <h2>Top Rated Movies</h2>
-                <Button
+        <>
+            {/* <div className="d-flex justify-content-end px-3 py-4">
+                {/* <Button
                     variant="dark"
                     href={`top-rated`}
                 >
                     All movies &gt;
                 </Button>
-            </div>
+            </div> */}
+
+            <h2 className="py-4 top-rated-title">Top Rated Movies</h2>
 
             {result && (
                 <>
-                    <Row className="g-4 slider flex-nowrap">
+                    <Row className="pt-5 mt-4 g-3 slider flex-nowrap ms-3 top-rated">
                         {result.results.slice(0, 10).map(data => (
                             <Col key={data.id} className=" d-flex align-items-stretch">
                                 <Card as={Link} to={`/top-rated/${data.id}`} className="movies-card">
@@ -46,8 +47,10 @@ const TopRatedMovies: React.FC<Iprops> = ({ result }) => {
                         ))}
                     </Row>
                 </>
-            )}
-        </Container>
+            )
+            }
+        </>
+        // </Container >
     )
 }
 
