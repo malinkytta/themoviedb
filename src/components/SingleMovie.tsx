@@ -3,9 +3,6 @@ import Col from "react-bootstrap/Col"
 import Card from "react-bootstrap/Card"
 import Image from "react-bootstrap/Image"
 import Button from "react-bootstrap/Button"
-// import Placeholder from '../assets/images/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg'
-
-import ListGroup from "react-bootstrap/ListGroup"
 import { Link, useNavigate } from "react-router-dom"
 import { Result } from "../types/movieAPI.types"
 import Container from "react-bootstrap/Container"
@@ -27,18 +24,15 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                 backgroundImage: "url(" + BASE_URL_IMAGE + (result.poster_path) + ")"
             }} >
                 <div className="blur">
-                    {/* <ListGroup className="mb-3 my-3"> */}
-                    {/* <ListGroup.Item className=" px-4 py-4"> */}
+
                     <Button variant='secondary' className="mb-3" onClick={() => navigate(-1)}>&laquo; Go Back</Button>
                     <Container>
                         <Row xs={1} md={2} lg={2} className="g-4">
                             <Card className="transparent-bg">
-                                {/* <Card.Body> */}
                                 <h2>{result.title}</h2>
                                 {result.genres.map(genre => (
                                     <Card.Text key={genre.id}>{genre.name}</Card.Text>
-                                )
-                                )}
+                                ))}
                                 <Card.Text>{result.runtime}</Card.Text>
                                 <Card.Text>⭐️ {result.vote_average}</Card.Text>
                                 <Card.Text>Release date: {result.release_date}</Card.Text>
@@ -80,12 +74,7 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                             ))}
                         </div>
 
-                        {/* </Container> */}
-                        {/* </Card.Body> */}
                     </Card>
-                    {/* </Row> */}
-                    {/* </ListGroup.Item> */}
-                    {/* </ListGroup > */}
                 </div>
             </div>
         </>
