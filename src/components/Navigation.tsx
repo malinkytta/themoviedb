@@ -1,7 +1,8 @@
 import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import ClickedMoviesComponent from "../components/ClickedMoviesComponent"
@@ -14,6 +15,7 @@ const Navigation = () => {
     const closeOffcanvas = () => {
         setShowOffcanvas(false)
     }
+    const navigate = useNavigate()
 
     const clickedMovies = savedMovies ? JSON.parse(savedMovies) : []
 
@@ -21,6 +23,10 @@ const Navigation = () => {
         <Navbar sticky='top' expand={false} data-bs-theme="dark" className="mb-3">
             <Container>
                 <Navbar.Brand as={Link} to={'/'}>TMDB</Navbar.Brand>
+                <Button onClick={() => navigate('/search')}
+                    variant="transparent">
+                    <i className="fa fa-search"></i>
+                </Button>
                 <Navbar.Toggle onClick={() => setShowOffcanvas(true)} />
                 <Navbar.Offcanvas
                     show={showOffcanvas}

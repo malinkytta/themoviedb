@@ -56,7 +56,7 @@ const SearchMoviesPage = () => {
                 <>
 
                     <p className="mx-5">
-                        Showing {new Intl.NumberFormat().format(data.total_results)} movies for "{query}"
+                        Showing {new Intl.NumberFormat().format(data.total_results)} movies for search query "{query}"
                     </p>
 
                     <Movies

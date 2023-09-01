@@ -260,6 +260,15 @@ fieldset:disabled {
     }
 }
 
+.fa.fa-search {
+    color: #ffffffb8;
+    font-size: 1.2rem;
+
+    &:hover {
+        color: #cc5e48;
+    }
+}
+
 .slider::-webkit-scrollbar {
     display: none;
 }
