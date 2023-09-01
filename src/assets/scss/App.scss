@@ -1,5 +1,5 @@
 @import "bootstrap/scss/bootstrap";
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@100;200;500&display=swap');
 
 body {
     margin: 0;
@@ -12,11 +12,6 @@ body::before {
             rgba(0, 0, 0, 0.7) 0%,
             rgba(0, 0, 0, 0.7) 100%),
         url('/src/assets/images/martin-widenka-hF-SdHIU2lQ-unsplash.jpg');
-    // background: linear-gradient(90deg,
-    //         rgba(0, 0, 0, 0.2) 0%,
-    //         rgba(0, 0, 0, 0.2) 100%),
-    //     url('/src/assets/images/felix-mooneeram-evlkOfkQ5rE-unsplash.jpg');
-
     filter: blur(10px);
     position: fixed;
     background-position: center;
@@ -25,10 +20,11 @@ body::before {
     width: 100%;
     height: 100%;
     z-index: -1;
+    overflow-x: hidden;
 }
 
 #App {
-    color: white;
+    color: #ffffffb8;
 }
 
 h1,
@@ -37,6 +33,7 @@ h3,
 h4,
 h5 {
     font-family: 'Bebas Neue', sans-serif;
+    color: #ffffffb8;
 }
 
 h2 {
@@ -44,13 +41,45 @@ h2 {
 }
 
 p,
-a {
+a,
+.btn {
     font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    color: #ffffffb8
 }
 
+.search-form {
+    background-color: rgba(255, 255, 255, 0.339);
+    color: rgba(255, 255, 255, 0.722);
+    border: 0;
+    color: white;
+
+    &:focus {
+        background-color: rgba(177, 177, 177, 0.722);
+        filter: drop-shadow(0px 0px 11px #c3c2c2);
+        box-shadow: none;
+    }
+}
+
+.btn-prev,
+.btn-next {
+    background: #cc5e48;
+    color: #ffffffb8;
+    border: 0;
+
+    &:hover {
+        background: #702327;
+    }
+}
+
+.btn:disabled,
+.btn.disabled,
+fieldset:disabled {
+    background: #3e1b24;
+    color: darken($color: #ffffffb8, $amount: 2)
+}
 
 .navbar {
-
     background-color: rgba(12, 12, 12, 0.639);
     backdrop-filter: blur(11.2px);
     -webkit-backdrop-filter: blur(11.2px);
@@ -64,16 +93,17 @@ a {
 .navbar .navbar-brand {
     font-family: 'Bebas Neue';
     font-size: 24px;
+    color: #ffffffb8;
 
     &:hover {
-        color: #3498db;
+        color: #cc5e48;
 
     }
 }
 
 .navbar-toggler {
     border: none;
-    color: white;
+    // color: #ffffffb8;
 
     &:focus {
         box-shadow: none;
@@ -81,8 +111,10 @@ a {
 }
 
 
-.navbar-nav {
+.navbar-nav,
+.nav-link {
     text-align: center;
+    color: #ffffffb8;
 }
 
 .nav-link:hover,
@@ -118,7 +150,6 @@ a {
 }
 
 
-
 .offcanvas-body {
     padding: 0;
     overflow-y: hidden;
@@ -126,7 +157,7 @@ a {
     h5 {
         font-size: 2.7rem;
         text-align: center;
-        color: #3498db;
+        color: #cc5e48;
     }
 }
 
@@ -139,14 +170,11 @@ a {
     backdrop-filter: blur(14.3px);
 }
 
-
 .vertical-ruler {
     border-right: 1px solid grey;
     height: 30px;
     margin: 0 15px;
 }
-
-
 
 .carousel-inner {
     border-radius: 10px;
@@ -163,24 +191,13 @@ a {
     padding-left: 0;
 }
 
-// .now-playing-title {
-//     position: absolute;
-//     top: 3%;
-//     left: 10%;
-//     transform: translateX(-10%);
-//     padding: 10px;
-//     margin: 0;
-//     font-size: 2rem;
-//     text-align: center;
-//     filter: drop-shadow(0px 0px 7px #000);
-// }
-
 .now-playing {
     position: relative;
     border: none;
     text-align: center;
     z-index: 1;
     margin: 30px 0;
+    filter: drop-shadow(-12px -7px 11px #000);
 
     .carousel-inner {
         border-radius: 0;
@@ -196,6 +213,7 @@ a {
     }
 
     .img-movie {
+        filter: brightness(0.8);
         object-fit: cover;
         height: 400px;
     }
@@ -260,6 +278,22 @@ a {
     opacity: 0;
 }
 
+.not-found-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+
+    h2 {
+        font-size: 5rem;
+    }
+
+    p {
+        text-align: center;
+    }
+}
 
 .scrolling-wrapper {
     overflow-x: auto;
@@ -299,6 +333,7 @@ a {
     border-bottom-right-radius: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+
 }
 
 .poster {
@@ -363,6 +398,7 @@ a {
 .read-more {
     cursor: pointer;
     padding: 0 10px;
+    font-weight: 500;
 }
 
 .single-movie-details {
@@ -393,6 +429,21 @@ a {
 
 
 @media(min-width:720px) {
+
+    .not-found-page {
+        flex-direction: row;
+        align-items: center;
+
+        h2 {
+            font-size: 10rem;
+        }
+
+        p {
+            text-align: start;
+            font-size: 1.3rem;
+            margin-bottom: 0;
+        }
+    }
 
     .movies-title {
         font-size: 3rem;
