@@ -32,11 +32,15 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                                 <h2>
                                     {result.title} ({result.release_date && result.release_date.toString().slice(0, 4)})
                                 </h2>
-                                {result.genres.map(genre => (
-                                    <Card.Text key={genre.id}>{genre.name}</Card.Text>
-                                ))}
-                                <Card.Text>   {Math.floor(result.runtime / 60)} h{' '}
-                                    {result.runtime % 60} min</Card.Text>
+                                <div className="d-flex">
+                                    {result.genres.map(genre => (
+                                        <Card.Text className="mx-2" key={genre.id}>{genre.name}</Card.Text>
+                                    ))}
+                                </div>
+                                <Card.Text>
+                                    {Math.floor(result.runtime / 60)} h{' '}
+                                    {result.runtime % 60} min
+                                </Card.Text>
                                 <Card.Text>⭐️ {result.vote_average}</Card.Text>
                                 <Card.Text>Release date: {result.release_date}</Card.Text>
                                 <h5>Overview</h5>
