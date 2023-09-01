@@ -26,7 +26,7 @@ const ClickedMoviesComponent: React.FC<Iprops> = ({ result, setShowOffcanvas }) 
             {result && result.length > 0 && (
                 <>
                     <Container className="pt-3 px-5 py-2">
-                        <Carousel className="custom-carousel">
+                        <Carousel interval={null} className="custom-carousel">
                             {result.map((movie) => (
                                 <Carousel.Item key={movie.id}>
                                     <div className="d-flex justify-content-center">
