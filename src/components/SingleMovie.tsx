@@ -13,18 +13,19 @@ interface IProps {
 const SingleMovie: React.FC<IProps> = ({ result }) => {
     const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/original'
 
-    console.log(BASE_URL_IMAGE + result.backdrop_path)
-    console.log(result.similar)
-
     return (
         <>
             <div className="background-image" style={{
-                backgroundImage: "url(" + BASE_URL_IMAGE + (result.poster_path) + ")"
+                backgroundImage: result.poster_path ? `url(${BASE_URL_IMAGE}${result.poster_path})` : ''
             }}>
                 <div className="blur">
                     <Container>
                         <Row xs={1} sm={1} md={2} lg={2} className="g-4 py-5 justify-content-center">
-                            <Image className="order-md-2 single-movie-img" src={BASE_URL_IMAGE + (result.poster_path)}
+                            <Image className="order-md-2 single-movie-img"
+                                src={result.poster_path
+                                    ? BASE_URL_IMAGE + result.poster_path
+                                    : 'https://placehold.co/300x400'
+                                }
                             />
 
                             <Card className="transparent-bg order-md-1">

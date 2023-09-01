@@ -24,12 +24,16 @@ const Actors: React.FC<IProps> = ({ result, url }) => {
 
         <>
             <div className="background-image" style={{
-                backgroundImage: "url(" + BASE_URL_IMAGE + (result.profile_path) + ")"
+                backgroundImage: result.profile_path ? `url(${BASE_URL_IMAGE}${result.profile_path})` : ''
             }}>
                 <div className="blur">
                     <Container>
                         <Row xs={1} sm={1} md={2} lg={2} className="g-4 py-5 justify-content-center">
-                            <Image className="order-md-2 single-movie-img" src={BASE_URL_IMAGE + (result.profile_path)} />
+                            <Image className="order-md-2 single-movie-img"
+                                src={result.profile_path
+                                    ? BASE_URL_IMAGE + result.profile_path
+                                    : 'https://placehold.co/300x400'
+                                } />
 
                             <Card className="transparent-bg order-md-1">
                                 <Card.Title>{result.name}</Card.Title>
