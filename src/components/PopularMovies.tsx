@@ -20,7 +20,7 @@ const PopularMovies: React.FC<IProps> = ({ result, toggleText, toggle }) => {
         <>
             {result && (
                 <>
-                    <div className=" ps-5 ms-5 d-flex align-items-center justify-content-start">
+                    <div className=" ps-5 d-flex align-items-center justify-content-start">
                         <h2 className="py-2 mb-0 movies-title">Popular movies</h2>
                         <p className="ps-3 mb-0">by</p>
                         <Button

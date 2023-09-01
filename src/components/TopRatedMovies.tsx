@@ -12,7 +12,7 @@ const TopRatedMovies: React.FC<Iprops> = ({ result }) => {
 
     return (
         <>
-            <h2 className="ps-5 ms-5 pt-4 pb-1 movies-title">Top Rated Movies</h2>
+            <h2 className="ps-5 pt-4 pb-1 movies-title">Top Rated Movies</h2>
 
             {result && (
                 <>
