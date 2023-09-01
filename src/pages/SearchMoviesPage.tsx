@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import Search from "../components/Search"
 import { useSearchParams } from "react-router-dom"
 import Movies from "../components/Movies"
-import Row from 'react-bootstrap/Row'
 import ErrorComponent from "../components/ErrorComponent"
 import useSearchMovie from "../hooks/useSearchMovie"
 
@@ -56,20 +55,20 @@ const SearchMoviesPage = () => {
             {data && data.results.length > 0 && (
                 <>
 
-                    <p>Showing {new Intl.NumberFormat().format(data.total_results)} movies for "{query}"</p>
+                    <p className="mx-5">
+                        Showing {new Intl.NumberFormat().format(data.total_results)} movies for "{query}"
+                    </p>
 
-                    <Row>
-                        <Movies
-                            result={data}
-                            url={'/movies'}
-                            currentPage={page}
-                            setSearchParams={setSearchParams}
-                            text={query}
-                            useTimeWindow={false}
-                            useQuery={true}
-                            useGenre={false}
-                        />
-                    </Row>
+                    <Movies
+                        result={data}
+                        url={'/movies'}
+                        currentPage={page}
+                        setSearchParams={setSearchParams}
+                        text={query}
+                        useTimeWindow={false}
+                        useQuery={true}
+                        useGenre={false}
+                    />
                 </>
             )}
         </>

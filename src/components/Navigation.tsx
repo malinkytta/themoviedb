@@ -7,8 +7,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 import ClickedMoviesComponent from "../components/ClickedMoviesComponent"
 
 const Navigation = () => {
-    // const [searchInput, setSearchInput] = useState("")
-    // const navigate = useNavigate()
+
     const savedMovies = localStorage.getItem('clickedMovies')
     const [showOffcanvas, setShowOffcanvas] = useState(false)
 
@@ -16,19 +15,12 @@ const Navigation = () => {
         setShowOffcanvas(false)
     }
 
-    // const handleSearch = (e: React.FormEvent) => {
-    //     e.preventDefault()
-    //     navigate(`/search?query=${encodeURIComponent(searchInput)}`)
-    //     setShowOffcanvas(false)
-    //     setSearchInput('')
-    // }
-
     const clickedMovies = savedMovies ? JSON.parse(savedMovies) : []
 
     return (
         <Navbar sticky='top' expand={false} data-bs-theme="dark" className="mb-3">
             <Container>
-                <Navbar.Brand as={Link} to={'/'}>The Movie DB</Navbar.Brand>
+                <Navbar.Brand as={Link} to={'/'}>TMDB</Navbar.Brand>
                 <Navbar.Toggle onClick={() => setShowOffcanvas(true)} />
                 <Navbar.Offcanvas
                     show={showOffcanvas}
@@ -38,10 +30,10 @@ const Navigation = () => {
                     aria-labelledby={`offcanvasNavbarLabel`}
                     placement="start"
                 >
-                    <Offcanvas.Header className='justify-content-end pe-3' closeButton>
+                    <Offcanvas.Header className='justify-content-end' closeButton>
 
                     </Offcanvas.Header>
-                    <Offcanvas.Body className='d-flex flex-column justify-content-between'>
+                    <Offcanvas.Body className='d-flex flex-column between'>
                         <Offcanvas.Title id={`offcanvasNavbarLabel}`}>
                             The Movie DB
                         </Offcanvas.Title>
@@ -69,20 +61,9 @@ const Navigation = () => {
                                 All Movies</Nav.Link>
                             <hr />
                         </Nav>
-                        {/* <Form onSubmit={handleSearch} className="d-flex mx-5">
-                            <Form.Control
-                                type="search"
-                                placeholder="Search"
-                                className="me-2"
-                                aria-label="Search"
-                                value={searchInput}
-                                onChange={(e) => setSearchInput(e.target.value)}
-                            />
-                            <Button variant="outline-success">🔍</Button>
-                        </Form> */}
 
                         <Container className="my-3">
-                            <ClickedMoviesComponent result={clickedMovies} />
+                            <ClickedMoviesComponent result={clickedMovies} setShowOffcanvas={setShowOffcanvas} />
                         </Container>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>
