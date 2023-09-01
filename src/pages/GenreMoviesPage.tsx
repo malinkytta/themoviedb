@@ -49,23 +49,24 @@ const GenreMoviesPage = () => {
     }
 
     return (
-        <Container>
+        <>
+            <Container>
 
-            <Search
-                handleSubmit={handleSubmit}
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}
-            />
-
-            {genreTitles.data && (
-                <GenreDropdown
-                    result={genreTitles.data}
-                    title={title}
-                    setSearchParams={setSearchParams}
-                    setTitle={setTitle}
+                <Search
+                    handleSubmit={handleSubmit}
+                    searchInput={searchInput}
+                    setSearchInput={setSearchInput}
                 />
-            )}
 
+                {genreTitles.data && (
+                    <GenreDropdown
+                        result={genreTitles.data}
+                        title={title}
+                        setSearchParams={setSearchParams}
+                        setTitle={setTitle}
+                    />
+                )}
+            </Container>
             {singleGenre.data && (
                 <Movies
                     result={singleGenre.data}
@@ -80,7 +81,7 @@ const GenreMoviesPage = () => {
                 />
             )}
 
-        </Container>
+        </>
     )
 }
 
