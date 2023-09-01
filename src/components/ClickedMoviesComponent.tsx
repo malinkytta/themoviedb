@@ -7,9 +7,11 @@ import Container from "react-bootstrap/Container"
 
 interface Iprops {
     result: Result[]
+    setShowOffcanvas: (value: React.SetStateAction<boolean>) => void
+
 }
 
-const ClickedMoviesComponent: React.FC<Iprops> = ({ result }) => {
+const ClickedMoviesComponent: React.FC<Iprops> = ({ result, setShowOffcanvas }) => {
     const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/original'
 
 
@@ -29,6 +31,8 @@ const ClickedMoviesComponent: React.FC<Iprops> = ({ result }) => {
                                 <Carousel.Item key={movie.id}>
                                     <div className="d-flex justify-content-center">
                                         <Card
+                                            as={Link} to={`movies/${movie.id}`}
+                                            onClick={() => setShowOffcanvas(false)}
                                             className="mx-3"
                                             style={{ width: "300px" }}
                                         >
@@ -41,11 +45,16 @@ const ClickedMoviesComponent: React.FC<Iprops> = ({ result }) => {
                                                     : 'https://placehold.co/500x300'
                                                 }
                                             />
-                                            <Card.Title as={Link} to={`movies/${movie.id}`}>{movie.title}</Card.Title>
+
                                         </Card>
 
                                     </div>
+                                    <Card.Body className="pt-2">
+                                        <Card.Text >{movie.title}</Card.Text>
+                                    </Card.Body>
                                 </Carousel.Item>
+
+
                             ))}
                         </Carousel >
                     </Container>
