@@ -68,7 +68,6 @@ const SearchMoviesPage = () => {
                             useTimeWindow={false}
                             useQuery={true}
                             useGenre={false}
-                            title={'Search Movies'}
                         />
                     </Row>
                 </>
