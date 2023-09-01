@@ -58,7 +58,7 @@ const GenreMoviesPage = () => {
                     setSearchInput={setSearchInput}
                 />
 
-                {genreTitles.data && (
+                {genreTitles.data && genreTitles.data.genres.length > 0 && (
                     <GenreDropdown
                         result={genreTitles.data}
                         title={title}
@@ -67,6 +67,7 @@ const GenreMoviesPage = () => {
                     />
                 )}
             </Container>
+
             {singleGenre.data && (
                 <Movies
                     result={singleGenre.data}

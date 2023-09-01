@@ -27,7 +27,7 @@ const Actors: React.FC<IProps> = ({ result, url }) => {
             }}>
                 <div className="blur">
                     <Container>
-                        <Row xs={1} sm={1} md={2} lg={2} className="g-4 py-2 justify-content-center">
+                        <Row xs={1} sm={1} md={2} lg={2} className="g-4 pt-5 pb-2 justify-content-center">
                             <Image className="order-md-2 single-movie-img"
                                 src={result.profile_path
                                     ? BASE_URL_IMAGE + result.profile_path
@@ -62,7 +62,7 @@ const Actors: React.FC<IProps> = ({ result, url }) => {
                         </Row>
                         {result.movie_credits.cast.length > 0 && (
                             <Col className="order-md-3 mt-2">
-                                <h2>Movies</h2>
+                                <h3>Movies</h3>
                                 <Row className="g-3 slider flex-nowrap">
                                     {result.movie_credits.cast.map(data => (
                                         <Col key={data.id} className=" d-flex align-items-stretch">

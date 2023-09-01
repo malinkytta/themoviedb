@@ -30,7 +30,7 @@ const CarouselComponent: React.FC<IProps> = ({ result }) => {
                                     }
                                     alt="Movie poster"
                                 />
-                                <Carousel.Caption as={Link} to={`now-playing/${movie.id}`} className="mb-3">
+                                <Carousel.Caption as={Link} to={`now-playing/${movie.id}`} >
                                     <h3>{movie.title}</h3>
                                 </Carousel.Caption>
                             </Carousel.Item >
