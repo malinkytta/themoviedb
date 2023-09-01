@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card'
 import { MovieResponse } from '../types/movieAPI.types'
 import Pagination from './Pagination'
 import ErrorComponent from './ErrorComponent'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, SetURLSearchParams } from 'react-router-dom'
 
 
@@ -36,10 +36,13 @@ const Movies: React.FC<IProps> = ({
 
     const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/w500'
 
+    useEffect(() => {
+        setTimeout(() => { window.scrollTo(0, 0) }, 100)
+    }, [currentPage])
+
     if (currentPage > result.total_pages) {
         return <ErrorComponent />
     }
-
     const handlePage = (change: number) => {
         if (useTimeWindow) {
             return setSearchParams({ 'time-window': text, page: String(currentPage + change) })
@@ -71,7 +74,7 @@ const Movies: React.FC<IProps> = ({
                                         } />
                                     </div>
                                     <Card.Body className="details">
-                                        <Card.Title>{movie.title}</Card.Title>
+                                        <Card.Title>{movie.title} </Card.Title>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -87,7 +90,7 @@ const Movies: React.FC<IProps> = ({
                     onPreviousPage={() => handlePage(-1)}
                     onNextPage={() => handlePage(+1)}
                 />
-            </div>
+            </div >
         </>
     )
 }
