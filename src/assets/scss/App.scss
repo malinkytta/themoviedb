@@ -2,15 +2,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@100;300&display=swap');
 
 body {
-    background-color: #212529;
+    margin: 0;
+    background-color: rgb(21, 25, 28);
 }
 
-#root {
-    background-color: #212529;
+body::before {
+    content: "";
+    background: linear-gradient(90deg,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.7) 100%),
+        url('/src/assets/images/martin-widenka-hF-SdHIU2lQ-unsplash.jpg');
+    // background: linear-gradient(90deg,
+    //         rgba(0, 0, 0, 0.2) 0%,
+    //         rgba(0, 0, 0, 0.2) 100%),
+    //     url('/src/assets/images/felix-mooneeram-evlkOfkQ5rE-unsplash.jpg');
+
+    filter: blur(10px);
+    position: fixed;
+    background-position: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 #App {
-    min-height: 100vh;
     color: white;
 }
 
@@ -22,26 +39,21 @@ h5 {
     font-family: 'Bebas Neue', sans-serif;
 }
 
+h2 {
+    font-size: 3rem;
+}
+
 p,
 a {
     font-family: 'Raleway', sans-serif;
 }
 
-.h5 {
-    font-size: 2.7rem;
-    text-align: center;
-}
-
-// h2 {
-//     font-size: 3.7rem;
-// }
 
 .navbar {
-    background: rgba(31, 35, 39, 0.79);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    background-color: rgba(12, 12, 12, 0.639);
     backdrop-filter: blur(11.2px);
     -webkit-backdrop-filter: blur(11.2px);
-    border: 1px solid rgba(33, 37, 41, 1);
 }
 
 
@@ -52,6 +64,11 @@ a {
 .navbar .navbar-brand {
     font-family: 'Bebas Neue';
     font-size: 24px;
+
+    &:hover {
+        color: #3498db;
+
+    }
 }
 
 .navbar-toggler {
@@ -64,22 +81,64 @@ a {
 }
 
 
-.navbar-nav .nav-link.active {
-    background-color: #474e47;
-}
-
-.offcanvas-body {
-    padding: 0;
-    overflow-y: hidden;
-}
-
 .navbar-nav {
     text-align: center;
 }
 
-.nav-link:hover {
-    background-color: #474e47;
+.nav-link:hover,
+.navbar-nav .nav-link.active {
+    background-color: #090b0c70;
 }
+
+.custom-carousel {
+
+    .card {
+        border-color: transparent;
+        background-color: transparent;
+        border-radius: 0;
+    }
+
+    .card-title {
+        margin-bottom: 0;
+        border: 0;
+        font-size: 1rem;
+    }
+
+    .card-body {
+
+        .card-text:last-child {
+            margin-bottom: 0;
+            font-family: 'Bebas Neue';
+            text-align: center;
+            font-size: 1rem;
+        }
+
+    }
+
+}
+
+
+
+.offcanvas-body {
+    padding: 0;
+    overflow-y: hidden;
+
+    h5 {
+        font-size: 2.7rem;
+        text-align: center;
+        color: #3498db;
+    }
+}
+
+
+.offcanvas.show {
+    border: 0;
+    background: rgba(12, 12, 12, 0.83);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(14.3px);
+}
+
 
 .vertical-ruler {
     border-right: 1px solid grey;
@@ -87,13 +146,7 @@ a {
     margin: 0 15px;
 }
 
-h3 {
-    font-size: 1.2rem;
-}
 
-.navbar-brand {
-    color: white;
-}
 
 .carousel-inner {
     border-radius: 10px;
@@ -101,10 +154,8 @@ h3 {
 }
 
 .single-movie-img {
-
     height: 69vh;
     width: auto;
-
 }
 
 .genres .btn {
@@ -112,24 +163,24 @@ h3 {
     padding-left: 0;
 }
 
-.now-playing-title {
-    position: absolute;
-    top: 8%;
-    left: 10%;
-    transform: translateX(-10%);
-    z-index: 2;
-    padding: 10px;
-    margin: 0;
-    font-size: 5.5vw;
-    text-align: center;
-    filter: drop-shadow(0px 0px 7px #000);
-}
+// .now-playing-title {
+//     position: absolute;
+//     top: 3%;
+//     left: 10%;
+//     transform: translateX(-10%);
+//     padding: 10px;
+//     margin: 0;
+//     font-size: 2rem;
+//     text-align: center;
+//     filter: drop-shadow(0px 0px 7px #000);
+// }
 
 .now-playing {
     position: relative;
     border: none;
     text-align: center;
     z-index: 1;
+    margin: 30px 0;
 
     .carousel-inner {
         border-radius: 0;
@@ -153,14 +204,11 @@ h3 {
 .background-image {
     background-position: center;
     background-size: cover;
-    // background-attachment: fixed;
 
 }
 
 .blur {
-    // background: rgba(255, 255, 255, 0.2); // Make sure this color has an opacity of less than 1
-    // backdrop-filter: blur(12px); // This be the blur
-    background: rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0.307);
     backdrop-filter: blur(22.6px);
     -webkit-backdrop-filter: blur(11.6px);
 
@@ -170,11 +218,6 @@ h3 {
     background: transparent;
     border: 0;
     color: white;
-    // background: rgba(0, 0, 0, 0);
-    // border-radius: 16px;
-    // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    // backdrop-filter: blur(11.6px);
-    // -webkit-backdrop-filter: blur(11.6px);
 
     .btn {
         border-radius: 0;
@@ -186,12 +229,12 @@ h3 {
 }
 
 .movies-title {
-    font-size: 3rem;
+    font-size: 2rem;
     filter: drop-shadow(0px 0px 7px #000);
 }
 
 .slider {
-    overflow-x: scroll;
+    overflow-x: auto;
     height: 360px;
 
     ::-webkit-scrollbar {
@@ -234,7 +277,6 @@ h3 {
     }
 }
 
-
 .similar-movies-btn.btn.btn-outline-secondary {
     border-radius: 20px;
 }
@@ -245,10 +287,18 @@ h3 {
     // height: 100%;
     height: 300px;
     background: #000;
-    // border-radius: 10px;
+    border-radius: 3px;
+    border: 0;
     overflow: hidden;
     box-shadow: 0 10px 10px rgba(0, 0, 0, .2);
     cursor: pointer;
+}
+
+.card-img {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .poster {
@@ -298,12 +348,12 @@ h3 {
     bottom: 0;
 }
 
-.details h1 {
+.details h5 {
     font-size: 1.5em;
     margin-bottom: 5px;
 }
 
-.details h2 {
+.details p {
     font-weight: 400;
     font-size: 1em;
     margin-bottom: 10px;
@@ -311,7 +361,6 @@ h3 {
 }
 
 .read-more {
-    font-weight: 400;
     cursor: pointer;
     padding: 0 10px;
 }
@@ -340,4 +389,19 @@ h3 {
     font-size: 1em;
     margin-bottom: 10px;
     opacity: .6;
+}
+
+
+@media(min-width:720px) {
+
+    .movies-title {
+        font-size: 3rem;
+    }
+}
+
+@media(min-width:1000px) {
+
+    .movies-title {
+        font-size: 4rem;
+    }
 }
