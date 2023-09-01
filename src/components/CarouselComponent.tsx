@@ -14,11 +14,11 @@ const CarouselComponent: React.FC<IProps> = ({ result }) => {
 
     return (
         <>
-            <h2 className="now-playing-title">In cinemas now</h2>
+            <h2 className="ps-5 pt-4 pb-1 movies-title">In cinemas now</h2>
 
             {result && (
 
-                <Carousel interval={null} className="now-playing mt-5">
+                <Carousel interval={null} className="now-playing mt-2">
                     {
                         result.results.slice(0, 10).map(movie => (
                             <Carousel.Item key={movie.id}>
