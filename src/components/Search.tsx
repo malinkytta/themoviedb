@@ -28,6 +28,7 @@ const Search: React.FC<IProps> = ({
                             required
                             type="text"
                             placeholder="Search for Movie"
+                            className="search-form"
                             onChange={e => setSearchInput(e.target.value)}
                             value={searchInput}
                         />
@@ -35,10 +36,9 @@ const Search: React.FC<IProps> = ({
 
                     <div className="d-flex justify-content-end gap-2" >
                         <Button
-                            variant="secondary"
                             type="submit"
                             disabled={!searchInput.trim().length}
-                            className="border border-dark"
+                            className="btn-next"
                         >
                             Search
                         </Button>
