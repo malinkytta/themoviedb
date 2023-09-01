@@ -6,7 +6,6 @@ import Pagination from './Pagination'
 import ErrorComponent from './ErrorComponent'
 import React from 'react'
 import { Link, SetURLSearchParams } from 'react-router-dom'
-import { Container } from 'react-bootstrap'
 
 
 interface IProps {
@@ -19,7 +18,7 @@ interface IProps {
     useQuery: boolean
     useGenre: boolean
     genreId?: string
-    title?: string
+    children?: React.ReactNode
 }
 
 const Movies: React.FC<IProps> = ({
@@ -32,7 +31,7 @@ const Movies: React.FC<IProps> = ({
     useQuery,
     useGenre,
     genreId,
-    title
+    children
 }) => {
 
     const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/w500'
@@ -54,11 +53,14 @@ const Movies: React.FC<IProps> = ({
     }
 
     return (
-        <Container>
-            <h2>{title}</h2>
-            {result && (
-                <>
-                    <Row xs={2} md={3} lg={4} xl={5} className="g-4">
+        <>
+            <div className="mx-3 py-3" >
+                <div className=" ps-5 ms-5">
+                    {children}
+                </div>
+
+                {result && (
+                    <Row xs={2} md={3} lg={4} xl={5} className="g-4 mt-3">
                         {result.results.map(movie => (
                             <Col key={movie.id} className=" d-flex align-items-stretch flex-wrap justify-content-center">
                                 <Card as={Link} to={`${url}/${movie.id}`} className="movies-card">
@@ -75,20 +77,18 @@ const Movies: React.FC<IProps> = ({
                             </Col>
                         ))}
                     </Row>
-                </>
+                )}
 
-            )
-            }
-
-            <Pagination
-                page={currentPage}
-                totalPages={result.total_pages}
-                hasPreviousPage={currentPage > 1}
-                hasNextPage={currentPage < (result.total_pages > 500 ? 500 : result.total_pages)}
-                onPreviousPage={() => handlePage(-1)}
-                onNextPage={() => handlePage(+1)}
-            />
-        </Container>
+                <Pagination
+                    page={currentPage}
+                    totalPages={result.total_pages}
+                    hasPreviousPage={currentPage > 1}
+                    hasNextPage={currentPage < (result.total_pages > 500 ? 500 : result.total_pages)}
+                    onPreviousPage={() => handlePage(-1)}
+                    onNextPage={() => handlePage(+1)}
+                />
+            </div>
+        </>
     )
 }
 

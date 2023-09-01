@@ -3,7 +3,6 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { SetURLSearchParams } from "react-router-dom"
 
-
 interface IProps {
     result: Genre
     title: string
@@ -15,9 +14,9 @@ const GenresComponent: React.FC<IProps> = ({ result, title, setSearchParams, set
 
 
     return (
-        <div className="d-flex justify-content-stretch genres">
-            <h2>Sort by Genre:</h2>
-            <DropdownButton className="mb-4 ms-3" variant="transparent" data-bs-theme="dark" title={title ? title : 'Filter genres'}>
+        <div className="d-flex justify-content-stretch align-items-center genres">
+            <h2 className="movies-title mt-3">Sort by Genre:</h2>
+            <DropdownButton className="ms-3" variant="transparent" data-bs-theme="dark" title={title ? title : 'Filter genres'}>
                 {result.genres.map(data => (
                     <Dropdown.Item
                         key={data.id}

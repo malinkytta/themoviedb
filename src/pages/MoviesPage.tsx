@@ -48,9 +48,12 @@ const MoviesPage = () => {
                         text={timeWindow}
                         useTimeWindow={false}
                         useQuery={false}
-                        useGenre={false}
-                        title={'Now playing in Cinemas'}
-                    />
+                        useGenre={false}>
+
+                        <h2 className="py-2 mb-0 movies-title">In cinemas now</h2>
+
+                    </Movies>
+
                 </>
             )}
 
@@ -66,25 +69,27 @@ const MoviesPage = () => {
                             useTimeWindow={false}
                             useQuery={false}
                             useGenre={false}
-                            title={'Top rated movies'}
-                        />
+                        >
+                            <h2 className="py-2 mb-0 movies-title">Top Rated movies</h2>
+
+                        </Movies>
                     </>
                 )
             }
 
             {popular.data && location.pathname === '/popular-movies' && (
                 <>
-                    <div className="d-flex px-4">
-                        <p>Sort by</p>
+                    <div className=" ps-5 ms-5 d-flex align-items-center justify-content-start">
+                        <h2 className="py-2 mb-0 movies-title">Popular movies</h2>
+                        <p className="ps-3 mb-0">by</p>
                         <Button
                             data-bs-theme='dark'
-                            className=""
+                            className="mb-0 ms-0"
                             variant="transparent"
                             onClick={toggleText}
                         >
-                            {toggle ? 'day' : 'week'}
+                            {toggle ? 'Day' : 'Week'}
                         </Button>
-
                     </div>
 
                     <Movies
@@ -96,15 +101,10 @@ const MoviesPage = () => {
                         useTimeWindow={true}
                         useQuery={false}
                         useGenre={false}
-                        title={'Popular movies'}
                     />
                 </>
             )
             }
-
-
-
-
         </>
     )
 }

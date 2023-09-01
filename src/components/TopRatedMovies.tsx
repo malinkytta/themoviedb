@@ -12,11 +12,11 @@ const TopRatedMovies: React.FC<Iprops> = ({ result }) => {
 
     return (
         <>
-            <h2 className="py-4 top-rated-title">Top Rated Movies</h2>
+            <h2 className="ps-5 ms-5 pt-4 pb-1 movies-title">Top Rated Movies</h2>
 
             {result && (
                 <>
-                    <Row className="pt-5 mt-4 g-3 slider flex-nowrap ms-3 top-rated">
+                    <Row className="g-3 slider flex-nowrap ms-3 top-rated">
                         {result.results.slice(0, 10).map(data => (
                             <Col key={data.id} className=" d-flex align-items-stretch">
                                 <Card as={Link} to={`/top-rated/${data.id}`} className="movies-card">
