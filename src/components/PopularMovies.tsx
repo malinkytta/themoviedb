@@ -29,8 +29,9 @@ const PopularMovies: React.FC<IProps> = ({ result, toggleText, toggle }) => {
                             variant="transparent"
                             onClick={toggleText}
                         >
-                            {toggle ? 'Day' : 'Week'}
+                            {toggle ? 'Day ▿' : 'Week ▿'}
                         </Button>
+
                     </div>
                     <Row className="pb-3 mb-4 g-3 slider flex-nowrap ms-3 popular-movies">
                         {result.results.slice(0, 10).map(data => (

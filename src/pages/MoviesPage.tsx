@@ -88,7 +88,7 @@ const MoviesPage = () => {
                             variant="transparent"
                             onClick={toggleText}
                         >
-                            {toggle ? 'Day' : 'Week'}
+                            {toggle ? 'Day ▿' : 'Week ▿'}
                         </Button>
                     </div>
 
