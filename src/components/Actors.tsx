@@ -19,7 +19,6 @@ const Actors: React.FC<IProps> = ({ result, url }) => {
     }
 
     const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/original'
-
     return (
 
         <>
@@ -28,7 +27,7 @@ const Actors: React.FC<IProps> = ({ result, url }) => {
             }}>
                 <div className="blur">
                     <Container>
-                        <Row xs={1} sm={1} md={2} lg={2} className="g-4 py-5 justify-content-center">
+                        <Row xs={1} sm={1} md={2} lg={2} className="g-4 py-2 justify-content-center">
                             <Image className="order-md-2 single-movie-img"
                                 src={result.profile_path
                                     ? BASE_URL_IMAGE + result.profile_path
@@ -36,7 +35,7 @@ const Actors: React.FC<IProps> = ({ result, url }) => {
                                 } />
 
                             <Card className="transparent-bg order-md-1">
-                                <Card.Title>{result.name}</Card.Title>
+                                <h2>{result.name}</h2>
                                 <Card.Text>Gender: {
                                     result.gender === 1
                                         ? 'Female'
@@ -58,31 +57,32 @@ const Actors: React.FC<IProps> = ({ result, url }) => {
                                             {readMore ? "Show less" : " Read more"}
                                         </span>
                                     )}
-
                                 </Card.Text>
-
                             </Card>
                         </Row>
-                        <Col className="order-md-3">
-                            <h2>Movies</h2>
-                            <Row className="g-3 slider flex-nowrap">
-                                {result.movie_credits.cast.map(data => (
-                                    <Col key={data.id} className=" d-flex align-items-stretch">
-                                        <Card as={Link} to={`${url}${data.id}`} className="movies-card">
+                        {result.movie_credits.cast.length > 0 && (
+                            <Col className="order-md-3 mt-2">
+                                <h2>Movies</h2>
+                                <Row className="g-3 slider flex-nowrap">
+                                    {result.movie_credits.cast.map(data => (
+                                        <Col key={data.id} className=" d-flex align-items-stretch">
+                                            <Card as={Link} to={`${url}${data.id}`} className="movies-card">
 
-                                            <Card.Img alt="poster" src={data.poster_path
-                                                ? BASE_URL_IMAGE + data.poster_path
-                                                : 'https://placehold.co/300x400'
-                                            } />
+                                                <Card.Img alt="poster" src={data.poster_path
+                                                    ? BASE_URL_IMAGE + data.poster_path
+                                                    : 'https://placehold.co/300x400'
+                                                } />
 
-                                            <Card.Body className='single-movie-details'>
-                                                <Card.Title>{data.original_title}</Card.Title>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-                                ))}
-                            </Row>
-                        </Col>
+                                                <Card.Body className='single-movie-details'>
+                                                    <Card.Title>{data.original_title}</Card.Title>
+                                                </Card.Body>
+                                            </Card>
+                                        </Col>
+                                    ))}
+                                </Row>
+                            </Col>
+                        )}
+
                     </Container>
                 </div>
             </div>
