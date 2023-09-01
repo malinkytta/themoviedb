@@ -15,7 +15,7 @@ const SearchMoviesPage = () => {
 
     searchParams.set('page', String(page))
 
-    const { data, isError } = useSearchMovie(query, page)
+    const { data, isError, refetch } = useSearchMovie(query, page)
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -38,6 +38,10 @@ const SearchMoviesPage = () => {
         }
     }
 
+    useEffect(() => {
+        setSearchInput('')
+        refetch()
+    }, [])
 
     return (
         <>
