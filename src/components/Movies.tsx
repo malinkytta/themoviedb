@@ -75,6 +75,7 @@ const Movies: React.FC<IProps> = ({
                                     </div>
                                     <Card.Body className="details">
                                         <Card.Title>{movie.title} </Card.Title>
+                                        <Card.Text>⭐️ {movie.vote_average} </Card.Text>
                                     </Card.Body>
                                 </Card>
                             </Col>
