@@ -183,6 +183,14 @@ fieldset:disabled {
   padding-left: 0;
 }
 
+.genre-link {
+  text-decoration: none;
+  font-weight: 500;
+  &:hover {
+    color: #cc5e48;
+  }
+}
+
 .now-playing {
   position: relative;
   border: none;
@@ -417,7 +425,7 @@ fieldset:disabled {
 }
 
 .single-movie-details h5 {
-  font-size: 3em;
+  font-size: 1.5em;
   margin-bottom: 10px;
   opacity: 0.6;
 }

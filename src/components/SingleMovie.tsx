@@ -34,7 +34,11 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                                 </h2>
                                 <div className="d-flex">
                                     {result.genres.map(genre => (
-                                        <Card.Text className="mx-2" key={genre.id}>{genre.name}</Card.Text>
+                                        <Card.Text
+                                            as={Link}
+                                            to={`/movies?${genre.id}`}
+                                            className="mx-2 mb-3 genre-link"
+                                            key={genre.id}>{genre.name}</Card.Text>
                                     ))}
                                 </div>
                                 <Card.Text>
@@ -62,6 +66,12 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                                                 </div>
                                                 <Card.Body className='single-movie-details'>
                                                     <Card.Title>{data.name}</Card.Title>
+                                                    {data.character && (
+                                                        <>
+                                                            <Card.Text>as</Card.Text>
+                                                            <Card.Text>{data.character}</Card.Text>
+                                                        </>
+                                                    )}
                                                 </Card.Body>
                                             </Card>
                                         </Col>
