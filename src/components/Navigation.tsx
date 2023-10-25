@@ -21,7 +21,9 @@ const Navigation = () => {
     return (
         <Navbar sticky='top' expand={false} data-bs-theme="dark" className="mb-3">
             <Container>
-                <Navbar.Brand as={Link} to={'/'}>TMDB</Navbar.Brand>
+                <Navbar.Brand as={Link} to={'/'}>
+                The<span style={{ color: "#cc5e48" }}>Movie</span>DB
+                </Navbar.Brand>
                 <Link to={'/search'}>
                     <Button
                         variant="transparent">
