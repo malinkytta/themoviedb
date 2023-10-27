@@ -33,3 +33,7 @@ This project is a web application that utilizes The Movie DB (TMDB) API to provi
 - Search for movies with pagination and retain search query and pagination on page reload.
 - Display the last 10 viewed movies with a history that survives sessions.
 - Ability to choose between popular movies for the day or the week, which is preserved on page reload.
+
+## Assignment Deadline: 10 days
+
+
