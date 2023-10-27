@@ -1,36 +1,35 @@
-# FED22 JavaScript 2 - Inlämningsuppgift 2
+# FED22 JavaScript 2 - Assignment 2
 
-## Beskrivning
+## Description
 
-Det här projektet är en webbapplikation som använder sig av The Movie DB (TMDB) API för att erbjuda användaren information om bioaktuella filmer, populära filmer, topplistade filmer, samt möjlighet att bläddra och söka filmer baserat på genre. Det inkluderar också detaljerad information om filmer och skådespelare, inklusive relaterade filmer och filmhistorik.
+This project is a web application that utilizes The Movie DB (TMDB) API to provide the user with information about currently playing movies, trending movies, top-rated movies, as well as the ability to browse and search for movies by genre. It also includes detailed information about movies and actors, including related movies and movie history.
 
+## Requirements
 
-## Kravspecifikation
+- Use React, React Router, and React Query.
+- Responsive design (mobile-first).
+- Component-based architecture.
+- Communication with the TMDB API in a separate service.
+- Include loading and error handling.
+- Written in TypeScript, well-indented and version-controlled.
+- Deployed to Netlify.
+- All code is self-written, and unused code is removed.
 
-- Använda React, React Router och React Query.
-- Responsiv design (mobile first).
-- Komponentbaserad arkitektur.
-- Kommunikation med TMDB API i en separat service.
-- Inkluderar loading och felhantering.
-- Skriven i TypeScript, väl indenterad och versionshanterad.
-- Deployad till Netlify.
-- All kod är egen och oanvänd kod är borttagen.
+## Functionality
 
-## Funktionalitet
+### The visitor can:
 
-### Besökaren kan:
+- View the latest currently playing movies.
+- View the most popular movies.
+- View the top-rated movies.
+- Browse and search for movies by genre.
+- Click on a movie to see detailed information and a list of actors.
+- Click on an actor to see detailed information and a list of movies they have appeared in.
 
-- Se de senaste bioaktuella filmerna.
-- Se de mest populära filmerna.
-- Se de mest topplistade filmerna.
-- Bläddra och söka filmer baserat på genre.
-- Klicka på en film för att se detaljerad information och lista över skådespelare.
-- Klicka på en skådespelare för att se detaljerad information och lista över filmer hen har medverkat i.
+### VG requirements:
 
-### VG-krav:
-
-- Användning av Custom Hooks.
-- Se relaterade/liknande filmer på en enskild film.
-- Söka efter filmer med paginering och behålla sökfråga och paginering vid omladdning av sidan.
-- Visa de senaste 10 visade filmer med historik som överlever sessioner.
-- Möjlighet att välja mellan populära filmer för dagen eller veckan som bibehålls vid omladdning av sidan.
+- Use Custom Hooks.
+- See related/similar movies on an individual movie page.
+- Search for movies with pagination and retain search query and pagination on page reload.
+- Display the last 10 viewed movies with a history that survives sessions.
+- Ability to choose between popular movies for the day or the week, which is preserved on page reload.
