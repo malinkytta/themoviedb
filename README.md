@@ -1,27 +1,36 @@
-# React + TypeScript + Vite
+# FED22 JavaScript 2 - Inlämningsuppgift 2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Beskrivning
 
-Currently, two official plugins are available:
+Det här projektet är en webbapplikation som använder sig av The Movie DB (TMDB) API för att erbjuda användaren information om bioaktuella filmer, populära filmer, topplistade filmer, samt möjlighet att bläddra och söka filmer baserat på genre. Det inkluderar också detaljerad information om filmer och skådespelare, inklusive relaterade filmer och filmhistorik.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Kravspecifikation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Använda React, React Router och React Query.
+- Responsiv design (mobile first).
+- Komponentbaserad arkitektur.
+- Kommunikation med TMDB API i en separat service.
+- Inkluderar loading och felhantering.
+- Skriven i TypeScript, väl indenterad och versionshanterad.
+- Deployad till Netlify.
+- All kod är egen och oanvänd kod är borttagen.
 
-- Configure the top-level `parserOptions` property like this:
+## Funktionalitet
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+### Besökaren kan:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Se de senaste bioaktuella filmerna.
+- Se de mest populära filmerna.
+- Se de mest topplistade filmerna.
+- Bläddra och söka filmer baserat på genre.
+- Klicka på en film för att se detaljerad information och lista över skådespelare.
+- Klicka på en skådespelare för att se detaljerad information och lista över filmer hen har medverkat i.
+
+### VG-krav:
+
+- Användning av Custom Hooks.
+- Se relaterade/liknande filmer på en enskild film.
+- Söka efter filmer med paginering och behålla sökfråga och paginering vid omladdning av sidan.
+- Visa de senaste 10 visade filmer med historik som överlever sessioner.
+- Möjlighet att välja mellan populära filmer för dagen eller veckan som bibehålls vid omladdning av sidan.
