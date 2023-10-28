@@ -1,5 +1,5 @@
 # FED22 JavaScript 2 - Assignment 2
-# The Movie DB
+## The Movie DB
 
 <img src="https://media.giphy.com/media/oe1kFNiUhLcSA/giphy.gif" width="50%">
 
