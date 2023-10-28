@@ -26,7 +26,7 @@ const CarouselComponent: React.FC<IProps> = ({ result }) => {
                                     className="d-block w-100 img-movie"
                                     src={movie.backdrop_path
                                         ? BASE_URL_IMAGE + movie.backdrop_path
-                                        : 'https://placehold.co/250x400'
+                                        : 'https://placehold.co/250x400/1c1c1c/FFF?text=Image+Not+Found'
                                     }
                                     alt="Movie poster"
                                 />

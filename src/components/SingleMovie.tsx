@@ -24,7 +24,7 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                             <Image className="order-md-2 single-movie-img"
                                 src={result.poster_path
                                     ? BASE_URL_IMAGE + result.poster_path
-                                    : 'https://placehold.co/300x400'
+                                    : 'https://placehold.co/300x400/1c1c1c/FFF?text=Image+Not+Found'
                                 }
                             />
 
@@ -61,7 +61,7 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                                                 <div className=''>
                                                     <Card.Img alt="poster" src={data.profile_path
                                                         ? BASE_URL_IMAGE + data.profile_path
-                                                        : 'https://placehold.co/300x400'
+                                                        : 'https://placehold.co/300x400/1c1c1c/FFF?text=Image+Not+Found'
                                                     } />
                                                 </div>
                                                 <Card.Body className='single-movie-details'>
@@ -91,7 +91,7 @@ const SingleMovie: React.FC<IProps> = ({ result }) => {
                                                 <div className=''>
                                                     <Card.Img alt="poster" src={movie.poster_path
                                                         ? BASE_URL_IMAGE + movie.poster_path
-                                                        : 'https://placehold.co/300x400'
+                                                        : 'https://placehold.co/300x400/1c1c1c/FFF?text=Image+Not+Found'
                                                     } />
                                                 </div>
                                                 <Card.Body className="single-movie-details">

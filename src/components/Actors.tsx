@@ -31,7 +31,7 @@ const Actors: React.FC<IProps> = ({ result, url }) => {
                             <Image className="order-md-2 single-movie-img"
                                 src={result.profile_path
                                     ? BASE_URL_IMAGE + result.profile_path
-                                    : 'https://placehold.co/300x400'
+                                    : 'https://placehold.co/300x400/1c1c1c/FFF?text=Image+Not+Found'
                                 } />
 
                             <Card className="transparent-bg order-md-1">
@@ -70,7 +70,7 @@ const Actors: React.FC<IProps> = ({ result, url }) => {
 
                                                 <Card.Img alt="poster" src={data.poster_path
                                                     ? BASE_URL_IMAGE + data.poster_path
-                                                    : 'https://placehold.co/300x400'
+                                                    : 'https://placehold.co/300x400/1c1c1c/FFF?text=Image+Not+Found'
                                                 } />
 
                                                 <Card.Body className='single-movie-details'>

@@ -40,7 +40,7 @@ const PopularMovies: React.FC<IProps> = ({ result, toggleText, toggle }) => {
                                     <div className='poster'>
                                         <Card.Img alt="poster" src={data.poster_path
                                             ? BASE_URL_IMAGE + data.poster_path
-                                            : 'https://placehold.co/500x300'
+                                            : 'https://placehold.co/500x750/1c1c1c/FFF?text=Image+Not+Found'
                                         } />
                                     </div>
                                     <Card.Body className='details'>

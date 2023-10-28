@@ -34,20 +34,16 @@ const ClickedMoviesComponent: React.FC<Iprops> = ({ result, setShowOffcanvas }) 
                                             as={Link} to={`movies/${movie.id}`}
                                             onClick={() => setShowOffcanvas(false)}
                                             className="mx-3"
-                                        // style={{ width: "300px" }}
                                         >
                                             <Card.Img
-                                                // style={{ height: "100%", objectFit: "cover" }}
                                                 className="img-movie"
                                                 variant="top"
                                                 src={movie.backdrop_path
                                                     ? BASE_URL_IMAGE + movie.backdrop_path
-                                                    : 'https://placehold.co/500x300'
+                                                    : 'https://placehold.co/500x750/1c1c1c/FFF?text=Image+Not+Found'
                                                 }
                                             />
-
                                         </Card>
-
                                     </div>
                                     <Card.Body className="pt-2">
                                         <Card.Text >{movie.title}</Card.Text>
