@@ -42,7 +42,7 @@ const SearchMoviesPage = () => {
     useEffect(() => {
         setSearchInput('')
         refetch()
-    }, [])
+    }, [refetch])
 
     return (
         <>
