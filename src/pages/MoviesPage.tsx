@@ -4,8 +4,9 @@ import ErrorComponent from "../components/ErrorComponent"
 import useNowPlaying from "../hooks/useNowPlaying"
 import useTopRated from "../hooks/useTopRated"
 import useTrending from "../hooks/useTrending"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Button from "react-bootstrap/Button"
+import Pagination from "../components/Pagination"
 
 const MoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -31,10 +32,6 @@ const MoviesPage = () => {
         )
     }
 
-    useEffect(() => {
-
-    }, [setSearchParams])
-
     return (
         <>
 
@@ -44,15 +41,18 @@ const MoviesPage = () => {
                         result={now_playing.data}
                         url={'/now-playing'}
                         currentPage={page}
-                        setSearchParams={setSearchParams}
-                        text={timeWindow}
-                        useTimeWindow={false}
-                        useQuery={false}
-                        useGenre={false}>
-
-                        <h2 className="py-2 mb-0 movies-title">In cinemas now</h2>
+                    >
+                    <h2 className="py-2 mb-0 movies-title">In cinemas now</h2>
 
                     </Movies>
+                    <Pagination
+                        page={page}
+                        totalPages={now_playing.data.total_pages}
+                        hasPreviousPage={page > 1}
+                        hasNextPage={page < (now_playing.data.total_pages > 500 ? 500 : now_playing.data.total_pages)}
+                        onPreviousPage={() => setSearchParams({ page: String(page -1) })}
+                        onNextPage={() => setSearchParams({ page: String(page +1) })}
+                    />
 
                 </>
             )}
@@ -64,15 +64,18 @@ const MoviesPage = () => {
                             result={top_rated.data}
                             url={'/top-rated'}
                             currentPage={page}
-                            setSearchParams={setSearchParams}
-                            text={timeWindow}
-                            useTimeWindow={false}
-                            useQuery={false}
-                            useGenre={false}
                         >
                             <h2 className="py-2 mb-0 movies-title">Top Rated movies</h2>
 
                         </Movies>
+                        <Pagination
+                        page={page}
+                        totalPages={top_rated.data.total_pages}
+                        hasPreviousPage={page > 1}
+                        hasNextPage={page < (top_rated.data.total_pages > 500 ? 500 : top_rated.data.total_pages)}
+                        onPreviousPage={() => setSearchParams({ page: String(page -1) })}
+                        onNextPage={() => setSearchParams({ page: String(page +1) })}
+                        />
                     </>
                 )
             }
@@ -96,11 +99,14 @@ const MoviesPage = () => {
                         result={popular.data}
                         url={'/popular-movies'}
                         currentPage={page}
-                        setSearchParams={setSearchParams}
-                        text={timeWindow}
-                        useTimeWindow={true}
-                        useQuery={false}
-                        useGenre={false}
+                    />
+                    <Pagination
+                        page={page}
+                        totalPages={popular.data.total_pages}
+                        hasPreviousPage={page > 1}
+                        hasNextPage={page < (popular.data.total_pages > 500 ? 500 : popular.data.total_pages)}
+                        onPreviousPage={() => setSearchParams({ 'time-window': timeWindow, page: String(page -1) })}
+                        onNextPage={() => setSearchParams({ 'time-window': timeWindow, page: String(page + 1) })}
                     />
                 </>
             )

@@ -101,7 +101,6 @@ fieldset:disabled {
 
 .navbar-toggler {
   border: none;
-  // color: #ffffffb8;
 
   &:focus {
     box-shadow: none;
@@ -324,7 +323,6 @@ fieldset:disabled {
 .movies-card {
   position: relative;
   width: 225px;
-  // height: 100%;
   height: 300px;
   background: #000;
   border-radius: 3px;
@@ -431,7 +429,8 @@ fieldset:disabled {
 
 #global-loading-spinner-wrapper {
   display: flex;
-  height: 100vh;
+  position: absolute;
+  z-index: 99;
   align-items: center;
   justify-content: center;
 }

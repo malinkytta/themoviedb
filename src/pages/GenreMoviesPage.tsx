@@ -7,6 +7,7 @@ import useGenres from "../hooks/useGenres"
 import useSingleGenre from "../hooks/useSingleGenre"
 import GenreDropdown from "../components/GenreDropdown"
 import Container from "react-bootstrap/Container"
+import Pagination from "../components/Pagination"
 
 const GenreMoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -29,7 +30,6 @@ const GenreMoviesPage = () => {
         return () => {
             localStorage.removeItem("genreTitle")
         }
-
     }, [])
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -38,7 +38,6 @@ const GenreMoviesPage = () => {
         if (!searchInput.trim().length) {
             return
         }
-
         navigate(`/search?query=${encodeURIComponent(searchInput)}`)
     }
 
@@ -48,6 +47,9 @@ const GenreMoviesPage = () => {
         )
     }
 
+    const setSearchParamss = (change: number) => {
+        return setSearchParams({ page: String(page + change), genre: String(genreId) })
+    }
     return (
         <>
             <Container>
@@ -69,17 +71,21 @@ const GenreMoviesPage = () => {
             </Container>
 
             {singleGenre.data && (
+                <>
                 <Movies
                     result={singleGenre.data}
                     url={'/movies'}
                     currentPage={page}
-                    setSearchParams={setSearchParams}
-                    text={''}
-                    useTimeWindow={false}
-                    useQuery={false}
-                    useGenre={true}
-                    genreId={genreId}
                 />
+                <Pagination
+                    page={page}
+                    totalPages={singleGenre.data.total_pages}
+                    hasPreviousPage={page > 1}
+                    hasNextPage={page < (singleGenre.data.total_pages > 500 ? 500 : singleGenre.data.total_pages)}
+                    onPreviousPage={() => setSearchParamss(-1)}
+                    onNextPage={() => setSearchParamss(+1)}
+                />
+                </>
             )}
 
         </>

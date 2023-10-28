@@ -2,22 +2,14 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import { MovieResponse } from '../types/movieAPI.types'
-import Pagination from './Pagination'
 import ErrorComponent from './ErrorComponent'
 import React, { useEffect } from 'react'
-import { Link, SetURLSearchParams } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 
 interface IProps {
     result: MovieResponse
     url: string
     currentPage: number
-    setSearchParams: SetURLSearchParams
-    text: string | ''
-    useTimeWindow: boolean
-    useQuery: boolean
-    useGenre: boolean
-    genreId?: string
     children?: React.ReactNode
 }
 
@@ -25,12 +17,6 @@ const Movies: React.FC<IProps> = ({
     result,
     url,
     currentPage,
-    setSearchParams,
-    text,
-    useTimeWindow,
-    useQuery,
-    useGenre,
-    genreId,
     children
 }) => {
 
@@ -42,17 +28,6 @@ const Movies: React.FC<IProps> = ({
 
     if (currentPage > result.total_pages) {
         return <ErrorComponent />
-    }
-    const handlePage = (change: number) => {
-        if (useTimeWindow) {
-            return setSearchParams({ 'time-window': text, page: String(currentPage + change) })
-        } else if (useQuery) {
-            return setSearchParams({ query: text, page: String(currentPage + change) })
-        } else if (useGenre) {
-            return setSearchParams({ page: String(currentPage + change), genre: String(genreId) })
-        } else {
-            return setSearchParams({ page: String(currentPage + change) })
-        }
     }
 
     return (
@@ -70,7 +45,7 @@ const Movies: React.FC<IProps> = ({
                                     <div className="poster">
                                         <Card.Img alt="poster" src={movie.poster_path
                                             ? BASE_URL_IMAGE + movie.poster_path
-                                            : ' https://placehold.co/500x750'
+                                            : 'https://placehold.co/500x750/1c1c1c/FFF?text=Image+Not+Found'
                                         } />
                                     </div>
                                     <Card.Body className="details">
@@ -82,15 +57,6 @@ const Movies: React.FC<IProps> = ({
                         ))}
                     </Row>
                 )}
-
-                <Pagination
-                    page={currentPage}
-                    totalPages={result.total_pages}
-                    hasPreviousPage={currentPage > 1}
-                    hasNextPage={currentPage < (result.total_pages > 500 ? 500 : result.total_pages)}
-                    onPreviousPage={() => handlePage(-1)}
-                    onNextPage={() => handlePage(+1)}
-                />
             </div >
         </>
     )

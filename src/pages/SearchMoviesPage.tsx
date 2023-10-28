@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom"
 import Movies from "../components/Movies"
 import ErrorComponent from "../components/ErrorComponent"
 import useSearchMovie from "../hooks/useSearchMovie"
+import Pagination from "../components/Pagination"
 
 const SearchMoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -45,7 +46,6 @@ const SearchMoviesPage = () => {
 
     return (
         <>
-
             {isError && (
                 <ErrorComponent />
             )}
@@ -67,11 +67,14 @@ const SearchMoviesPage = () => {
                         result={data}
                         url={'/movies'}
                         currentPage={page}
-                        setSearchParams={setSearchParams}
-                        text={query}
-                        useTimeWindow={false}
-                        useQuery={true}
-                        useGenre={false}
+                    />
+                    <Pagination
+                        page={page}
+                        totalPages={data.total_pages}
+                        hasPreviousPage={page > 1}
+                        hasNextPage={page < (data.total_pages > 500 ? 500 : data.total_pages)}
+                        onPreviousPage={() => setSearchParams({ query: query, page: String(page -1) })}
+                        onNextPage={() => setSearchParams({ query: query, page: String(page + 1) })}
                     />
                 </>
             )}
