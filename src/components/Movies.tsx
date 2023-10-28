@@ -63,7 +63,7 @@ const Movies: React.FC<IProps> = ({
                 </div>
 
                 {result && (
-                    <Row xs={2} md={3} lg={4} xl={5} className="g-4 mt-3">
+                    <Row xs={2} md={3} lg={4} xl={6} className="g-4 mt-3">
                         {result.results.map(movie => (
                             <Col key={movie.id} className=" d-flex align-items-stretch flex-wrap justify-content-center">
                                 <Card as={Link} to={`${url}/${movie.id}`} className="movies-card">

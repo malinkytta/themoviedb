@@ -8,11 +8,9 @@ body {
 
 body::before {
   content: "";
-  background: linear-gradient(
-      90deg,
+  background: linear-gradient(90deg,
       rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.7) 100%
-    ),
+      rgba(0, 0, 0, 0.7) 100%),
     url("/src/assets/images/martin-widenka-hF-SdHIU2lQ-unsplash.jpg");
   filter: blur(10px);
   position: fixed;
@@ -87,13 +85,13 @@ fieldset:disabled {
   -webkit-backdrop-filter: blur(11.2px);
 }
 
-.navbar > .container {
+.navbar>.container {
   justify-content: flex-end;
 }
 
 .navbar .navbar-brand {
   font-family: "Bebas Neue";
-  font-size: 24px;
+  font-size: 2rem;
   color: #ffffffb8;
 
   &:hover {
@@ -186,6 +184,7 @@ fieldset:disabled {
 .genre-link {
   text-decoration: none;
   font-weight: 500;
+
   &:hover {
     color: #cc5e48;
   }
@@ -260,7 +259,7 @@ fieldset:disabled {
 
 .fa.fa-search {
   color: #ffffffb8;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 
   &:hover {
     color: #cc5e48;
